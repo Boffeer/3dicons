@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"
+    />
+    <title>About</title>
+    <link rel="stylesheet" href="/app/css/app.css" />
+    <script>
+      function canUseWebP() {
+        var e = document.createElement("canvas");
+        return (
+          !(!e.getContext || !e.getContext("2d")) &&
+          0 == e.toDataURL("image/webp").indexOf("data:image/webp")
+        );
+      }
+      var root = document.getElementsByTagName("html")[0];
+      canUseWebP() ? root.classList.add("ws") : root.classList.add("wn");
+    </script>
+  </head>
+  <body>
+    <main>
+      <header class="header">
+        <div class="header__wrap wrap wrap_big">
+          <div class="header__row flex">
+            <div class="header__cell header__cell_logo">
+              <a class="header__logo h3 logo" href="#"
+                >Free<span class="color-blue">3D</span>icon</a
+              >
+            </div>
+            <div class="header__cell header__cell_search">
+              <form class="header__search search search_small" action="">
+                <div class="search__row">
+                  <div class="search__cell search__cell_nav">
+                    <div class="search__select js-select select">
+                      <input
+                        class="select__input js-select-input"
+                        type="hidden"
+                        name="type"
+                        value="all"
+                      />
+                      <div class="select__header js-select-head">
+                        <div class="select__name js-select-label">
+                          All assets
+                        </div>
+                        <div class="select__arrow">
+                          <svg class="icon icon-arrow" viewBox="0 0 12 12">
+                            <use xlink:href="/app/icons/sprite.svg#arrow"></use>
+                          </svg>
+                        </div>
+                      </div>
+                      <div class="select__dropdown">
+                        <ul class="select__list">
+                          <li
+                            class="select__item js-select-option"
+                            data-value="all"
+                          >
+                            All assets
+                          </li>
+                          <li
+                            class="select__item js-select-option"
+                            data-value="icon"
+                          >
+                            Icons
+                          </li>
+                          <li
+                            class="select__item js-select-option"
+                            data-value="packs"
+                          >
+                            Icon packs
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="search__cell search__cell_field">
+                    <input
+                      class="search__input"
+                      name="s"
+                      type="text"
+                      placeholder="Search from all assets..."
+                    /><button class="search__button">
+                      <svg class="icon icon-loupe" viewBox="0 0 24 24">
+                        <use xlink:href="/app/icons/sprite.svg#loupe"></use>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="header__cell header__cell_menu">
+              <ul class="header__menu flex little-menu">
+                <li class="little-menu__item">
+                  <a class="little-menu__link" href="#"> Explore</a>
+                </li>
+                <li class="little-menu__item">
+                  <a class="little-menu__link" href="#"> About</a>
+                </li>
+                <li class="little-menu__item">
+                  <a class="little-menu__link" href="#"> Contact</a>
+                </li>
+                <li class="little-menu__item">
+                  <a class="little-menu__link" href="#"> License</a>
+                </li>
+              </ul>
+            </div>
+            <div class="header__cell header__cell_nav">
+              <div class="header__burger js-burger">
+                <div class="header__burger-line"></div>
+                <div class="header__burger-line"></div>
+                <div class="header__burger-line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header__mobile mobile js-mobile">
+          <div class="mobile__wrap wrap wrap_big">
+            <ul class="mobile__nav">
+              <li class="mobile__item">
+                <a class="mobile__link" href="#"> Explore</a>
+              </li>
+              <li class="mobile__item">
+                <a class="mobile__link" href="#"> About</a>
+              </li>
+              <li class="mobile__item">
+                <a class="mobile__link" href="#"> Contact</a>
+              </li>
+              <li class="mobile__item">
+                <a class="mobile__link" href="#"> License</a>
+              </li>
+            </ul>
+            <div class="mobile__copyright color-gray">
+              © 2022, Free3Dicon LLC.
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="container">
+        <section class="about">
+          <div class="about__wrap wrap">
+            <h1 class="about__title h2">About us</h1>
+            <div class="about__content">
+              <p>
+                Our team, creates for you an updated collection of 3D icons that
+                you can use in your personal and commercial projects. All icons
+                have free and premium versions. Let's see what you get if you
+                use premium.
+              </p>
+            </div>
+            <div class="about__row flex flex_vertical flex_justify">
+              <div class="about__column about__column_left">
+                <div class="about__list">
+                  <div class="about__item item-about is-active js-item-about">
+                    <div class="item-about__icon">
+                      <svg class="icon icon-check" viewBox="0 0 16 16">
+                        <use xlink:href="/app/icons/sprite.svg#check"></use>
+                      </svg>
+                    </div>
+                    <div class="item-about__wrap">
+                      <div class="item-about__title h5">3 Camera angles</div>
+                      <div class="item-about__text color-gray">
+                        Use the camera angle you want, so that the icon looks
+                        great in any scene.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="about__item item-about js-item-about">
+                    <div class="item-about__icon">
+                      <svg class="icon icon-check" viewBox="0 0 16 16">
+                        <use xlink:href="/app/icons/sprite.svg#check"></use>
+                      </svg>
+                    </div>
+                    <div class="item-about__wrap">
+                      <div class="item-about__title h5">Extra glossy style</div>
+                      <div class="item-about__text color-gray">
+                        You can use two different styles to diversify your
+                        design.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="about__item item-about js-item-about">
+                    <div class="item-about__icon">
+                      <svg class="icon icon-check" viewBox="0 0 16 16">
+                        <use xlink:href="/app/icons/sprite.svg#check"></use>
+                      </svg>
+                    </div>
+                    <div class="item-about__wrap">
+                      <div class="item-about__title h5">Editable colors</div>
+                      <div class="item-about__text color-gray">
+                        You can use two different styles to diversify your
+                        design.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="about__item item-about js-item-about">
+                    <div class="item-about__icon">
+                      <svg class="icon icon-check" viewBox="0 0 16 16">
+                        <use xlink:href="/app/icons/sprite.svg#check"></use>
+                      </svg>
+                    </div>
+                    <div class="item-about__wrap">
+                      <div class="item-about__title h5">High resolution</div>
+                      <div class="item-about__text color-gray">
+                        Icons in resolution (3000 px) will look great on any
+                        display.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="about__btn-wrap">
+                  <a class="about__btn btn" href="#"
+                    ><span class="btn__text">Explore</span></a
+                  >
+                </div>
+              </div>
+              <div class="about__column about__column_right">
+                <div class="about__clock">
+                  <video
+                    class="about__video js-video-about is-active js-video"
+                    src="/app/video/3-cameras.mp4"
+                    loop="loop"
+                    autoplay="autoplay"
+                    muted="muted"
+                  ></video
+                  ><video
+                    class="about__video js-video-about js-video"
+                    src="/app/video/Glossy-style.mp4"
+                    loop="loop"
+                    autoplay="autoplay"
+                    muted="muted"
+                  ></video
+                  ><video
+                    class="about__video js-video-about js-video"
+                    src="/app/video/Editable-colors.mp4"
+                    loop="loop"
+                    autoplay="autoplay"
+                    muted="muted"
+                  ></video
+                  ><video
+                    class="about__video js-video-about js-video"
+                    src="/app/video/High-resolution.mp4"
+                    loop="loop"
+                    autoplay="autoplay"
+                    muted="muted"
+                  ></video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <footer class="footer">
+        <div class="footer__wrap wrap">
+          <div class="footer__row flex flex_vertical">
+            <div class="footer__cell footer__cell_logo">
+              <a class="footer__logo h3 logo logo_white" href="#"
+                >Free<span class="color-blue">3D</span>icon</a
+              >
+            </div>
+            <div class="footer__cell footer__cell_copy">
+              <div class="footer__copy">© 2022, Free3Dicon LLC.</div>
+            </div>
+            <div class="footer__cell footer__cell_menu">
+              <ul class="footer__menu flex little-menu">
+                <li class="little-menu__item">
+                  <a class="little-menu__link" href="#"> License</a>
+                </li>
+                <li class="little-menu__item">
+                  <a class="little-menu__link" href="#"> Privacy policy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+    <div class="modals modals_thank mfp-hide modal" id="thank">
+      <div class="modals__thank">
+        <div class="modals__thank-img">
+          <picture>
+            <source type="image/webp" srcset="/app/img/thank__img.webp" />
+            <img src="/app/img/thank__img.png" />
+          </picture>
+        </div>
+        <div class="modals__thank-title h2">Thanks for writing!</div>
+        <div class="modals__thank-desc color-gray">
+          We have already received your message and will reply to you shortly.
+        </div>
+        <a class="modals__btn btn modals__thank-btn js-close-modal" href="#"
+          ><span class="btn__text">Got it</span></a
+        >
+      </div>
+    </div>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/app/js/app.js?v=1655839253063"></script>
+  </body>
+</html>
