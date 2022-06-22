@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying the footer
  *
@@ -11,24 +12,32 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'i3d' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'i3d' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'i3d' ), 'i3d', '<a href="http://underscores.me/">Underscores.me</a>' );
-				?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+<footer class="footer">
+	<div class="footer__wrap wrap">
+		<div class="footer__row flex flex_vertical">
+			<div class="footer__cell footer__cell_logo">
+				<a class="footer__logo h3 logo logo_white" href="#">Free<span class="color-blue">3D</span>icon</a>
+			</div>
+			<div class="footer__cell footer__cell_copy">
+				<div class="footer__copy">© 2022, Free3Dicon LLC.</div>
+			</div>
+			<div class="footer__cell footer__cell_menu">
+				<ul class="footer__menu flex little-menu">
+					<li class="little-menu__item">
+						<a class="little-menu__link" href="#"> License</a>
+					</li>
+					<li class="little-menu__item">
+						<a class="little-menu__link" href="#"> Privacy policy</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+</main>
 
 <?php wp_footer(); ?>
 
 </body>
+
 </html>
