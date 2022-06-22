@@ -34,6 +34,21 @@
 		</div>
 	</div>
 </footer>
+<div class="modals modals_thank mfp-hide modal" id="thank">
+	<div class="modals__thank">
+		<div class="modals__thank-img">
+			<picture>
+				<source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/thank__img.webp" />
+				<img src="<?php echo get_stylesheet_directory_uri(); ?>/app/img/thank__img.png" />
+			</picture>
+		</div>
+		<div class="modals__thank-title h2">Thanks for writing!</div>
+		<div class="modals__thank-desc color-gray">
+			We have already received your message and will reply to you shortly.
+		</div>
+		<a class="modals__btn btn modals__thank-btn js-close-modal" href="#"><span class="btn__text">Got it</span></a>
+	</div>
+</div>
 </main>
 
 <?php wp_footer(); ?>
