@@ -18,8 +18,9 @@
 							</div>
 							<div class="item-about__wrap">
 								<div class="item-about__title h5">3 Camera angles</div>
-								<div class="item-about__text color-gray">
+								<div class="item-about__text color-gray content">
 									Use the camera angle you want, so that the icon looks
+									<br>
 									great in any scene.
 								</div>
 							</div>
@@ -32,7 +33,7 @@
 							</div>
 							<div class="item-about__wrap">
 								<div class="item-about__title h5">Extra glossy style</div>
-								<div class="item-about__text color-gray">
+								<div class="item-about__text color-gray content">
 									You can use two different styles to diversify your
 									design.
 								</div>
@@ -46,9 +47,9 @@
 							</div>
 							<div class="item-about__wrap">
 								<div class="item-about__title h5">Editable colors</div>
-								<div class="item-about__text color-gray">
-									You can use two different styles to diversify your
-									design.
+								<div class="item-about__text color-gray content">
+									Change the color of the icons at any time to match the
+									style <br /> of your brand. <a href="#">See how to edit</a>
 								</div>
 							</div>
 						</div>
@@ -60,9 +61,9 @@
 							</div>
 							<div class="item-about__wrap">
 								<div class="item-about__title h5">High resolution</div>
-								<div class="item-about__text color-gray">
-									Icons in resolution (3000 px) will look great on any
-									display.
+								<div class="item-about__text color-gray content">
+									Icons in high resolution (3000 px) will look great on
+									any display.
 								</div>
 							</div>
 						</div>

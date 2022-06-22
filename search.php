@@ -14,62 +14,37 @@ get_header();
 <div class="container">
 	<section class="search-result">
 		<div class="search-result__wrap wrap">
-			<h2 class="search-result__title h3">
-				Search results for: <span class="color-blue">instagram</span>
-			</h2>
+			<?php if (have_posts()) : ?>
+				<h2 class="search-result__title h3">
+					<?php
+					/* translators: %s: search query. */
+					printf(esc_html__('Search results for: %s', 'i3d'), '<span class="color-blue">' . get_search_query() . '</span>');
+					?>
+				</h2>
+			<?php endif; ?>
 		</div>
 	</section>
 	<section class="icons-list">
 		<div class="icons-list__wrap wrap">
 			<div class="icons-list__row flex">
-				<div class="icons-list__item item-icon">
-					<div class="item-icon__nav nav-item">
-						<a class="nav-item__button nav-item__button_eye" href="/card_paid.html"><svg class="icon icon-eye" viewBox="0 0 24 24">
-								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#eye"></use>
-							</svg></a><a class="nav-item__button nav-item__button_basket" href="#"><svg class="icon icon-basket" viewBox="0 0 24 22">
-								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#basket"></use>
-							</svg></a>
-					</div>
-					<div class="item-icon__preview">
-						<picture>
-							<source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack-1-big.webp" />
-							<img src="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack-1-big.png" class="item-icon__icon" alt="" role="presentation" />
-						</picture>
-					</div>
-					<div class="item-icon__name small">Instagram</div>
-				</div>
-				<div class="icons-list__item item-icon">
-					<div class="item-icon__nav nav-item">
-						<a class="nav-item__button nav-item__button_eye" href="/card_paid.html"><svg class="icon icon-eye" viewBox="0 0 24 24">
-								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#eye"></use>
-							</svg></a><a class="nav-item__button nav-item__button_basket" href="#"><svg class="icon icon-basket" viewBox="0 0 24 22">
-								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#basket"></use>
-							</svg></a>
-					</div>
-					<div class="item-icon__preview">
-						<picture>
-							<source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack-2-big.webp" />
-							<img src="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack-2-big.png" class="item-icon__icon" alt="" role="presentation" />
-						</picture>
-					</div>
-					<div class="item-icon__name small">Bitcoin</div>
-				</div>
-				<div class="icons-list__item item-icon">
-					<div class="item-icon__nav nav-item">
-						<a class="nav-item__button nav-item__button_eye" href="/card_paid.html"><svg class="icon icon-eye" viewBox="0 0 24 24">
-								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#eye"></use>
-							</svg></a><a class="nav-item__button nav-item__button_basket" href="#"><svg class="icon icon-basket" viewBox="0 0 24 22">
-								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#basket"></use>
-							</svg></a>
-					</div>
-					<div class="item-icon__preview">
-						<picture>
-							<source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack-3-big.webp" />
-							<img src="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack-3-big.png" class="item-icon__icon" alt="" role="presentation" />
-						</picture>
-					</div>
-					<div class="item-icon__name small">Dashboard</div>
-				</div>
+				<?php if (have_posts()) {
+					/* Start the Loop */
+					while (have_posts()) {
+						the_post();
+
+						/**
+						 * Run the loop for the search to output the results.
+						 * If you want to overload this in a child theme then include a file
+						 * called content-search.php and that will be used instead.
+						 */
+						get_template_part('template-parts/content', 'search');
+					}
+
+					the_posts_navigation();
+				} else {
+					get_template_part('template-parts/content', 'none');
+				}
+				?>
 			</div>
 		</div>
 	</section>
@@ -422,43 +397,6 @@ get_header();
 		</div>
 	</section>
 </div>
-<main id="primary" class="site-main">
-
-	<?php if (have_posts()) : ?>
-
-		<header class="page-header">
-			<h1 class="page-title">
-				<?php
-				/* translators: %s: search query. */
-				printf(esc_html__('Search Results for: %s', 'i3d'), '<span>' . get_search_query() . '</span>');
-				?>
-			</h1>
-		</header><!-- .page-header -->
-
-	<?php
-		/* Start the Loop */
-		while (have_posts()) :
-			the_post();
-
-			/**
-			 * Run the loop for the search to output the results.
-			 * If you want to overload this in a child theme then include a file
-			 * called content-search.php and that will be used instead.
-			 */
-			get_template_part('template-parts/content', 'search');
-
-		endwhile;
-
-		the_posts_navigation();
-
-	else :
-
-		get_template_part('template-parts/content', 'none');
-
-	endif;
-	?>
-
-</main><!-- #main -->
 
 <?php
 get_footer();

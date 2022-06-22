@@ -181,3 +181,18 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Custom posts types
+ */
+require get_template_directory() . '/inc/custom-posts.php';
+
+/**
+ * Carbon Fields
+ */
+add_action('carbon_fields_register_fields', 'ast_register_custom_fields');
+function ast_register_custom_fields()
+{
+	require get_template_directory() . '/inc/custom-fields-options/metabox.php';
+	require get_template_directory() . '/inc/custom-fields-options/theme-options.php';
+}
