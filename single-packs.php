@@ -6,11 +6,6 @@ $pack = array(
 	'icons' => carbon_get_the_post_meta('pack_icons'),
 	'currency' => carbon_get_theme_option('currency_price'),
 );
-
-echo '<pre>';
-var_dump($pack);
-echo '</pre>';
-
 ?>
 <div class="container">
 	<section class="pack-head">
