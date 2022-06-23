@@ -23,12 +23,18 @@
 			</div>
 			<div class="footer__cell footer__cell_menu">
 				<ul class="footer__menu flex little-menu">
-					<li class="little-menu__item">
-						<a class="little-menu__link" href="#"> License</a>
-					</li>
-					<li class="little-menu__item">
-						<a class="little-menu__link" href="#"> Privacy policy</a>
-					</li>
+
+					<?php
+					$header_menu_id = 6;
+					$header_menu_items =  wp_get_nav_menu_items($header_menu_id, [
+						'output_key'  => 'menu_order',
+					]);
+					?>
+					<?php foreach ($header_menu_items as $item) : ?>
+						<li class="little-menu__item">
+							<a class="little-menu__link" href="<?php echo $item->url; ?>"> <?php echo $item->title; ?></a>
+						</li>
+					<?php endforeach; ?>
 				</ul>
 			</div>
 		</div>

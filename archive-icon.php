@@ -1,110 +1,67 @@
-<?php
-get_header();
-$page_id = get_the_ID();
+<?php get_header(); ?>
 
-$icon = array(
-	'id' => carbon_get_the_post_meta('product_id'),
-	'pay_status' => carbon_get_the_post_meta('pay_status'),
-	'free_bullets' => i3d_explode_textarea(carbon_get_theme_option('free_icons_bullets')),
-	'currency' => carbon_get_theme_option('currency_price'),
-	'price' => carbon_get_theme_option('icons_price'),
-	'thumbs' => carbon_get_the_post_meta('thumbs'),
-);
-
-if ($icon['pay_status'] == 'premium') {
-	$icon['premium_bullets'] = i3d_explode_textarea(carbon_get_theme_option('premium_icons_bullets'));
-}
-
-?>
 <div class="container">
-	<section class="card">
-		<div class="card__wrap wrap">
-			<a class="card__link arrow-link arrow-link_back" href="/pack.html"><span class="arrow-link__text"> Back to icons</span><span class="arrow-link__icon"><svg class="icon icon-arrowRight" viewBox="0 0 24 24">
-						<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#arrowRight"></use>
-					</svg></span></a>
-			<div class="card__row flex">
-				<div class="card__column card__column_left flex flex_vertical flex_center">
-					<div class="card__gallery js-gallery">
-						<div class="card__title h5"><?php echo the_title(); ?></div>
-						<div class="card__slider">
-							<div class="card__slide js-slide">
-								<div class="card__img">
-									<picture>
-										<!-- <source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack__img264.webp" /> -->
-										<img src="<?php echo esc_url((wp_get_attachment_image_src(get_post_thumbnail_id(get_the_id()), 'medium')[0])) ?>" />
-									</picture>
-								</div>
-								<div class="card__caption color-gray h6">
-									Perspective / Matte
-								</div>
-							</div>
-							<?php if ($icon['thumbs']) : ?>
-								<?php foreach ($icon['thumbs'] as $thumb) : ?>
-									<div class="card__slide js-slide">
-										<div class="card__img">
-											<picture>
-												<!-- <source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack__img264-2.webp" /> -->
-												<img src="<?php echo esc_url((wp_get_attachment_image_src($thumb['image'], 'medium')[0])) ?>" />
-											</picture>
-										</div>
-										<div class="card__caption color-gray h6">
-											<?php echo $thumb['name'] ?>
-										</div>
-									</div>
-								<?php endforeach; ?>
-							<?php endif; ?>
-						</div>
-						<?php if ($icon['thumbs']) : ?>
-							<div class="card__thumbnails flex flex_center">
-								<div class="card__preview is-active js-preview">
-									<picture>
-										<!-- <source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack__img48.webp" /> -->
-										<img src="<?php echo esc_url((wp_get_attachment_image_src(get_post_thumbnail_id(get_the_id()), 'thumbnail')[0])) ?>" />
-									</picture>
-								</div>
-								<?php foreach ($icon['thumbs'] as $thumb) : ?>
-									<div class="card__preview js-preview">
-										<picture>
-											<!-- <source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack__img48.webp" /> -->
-											<img src="<?php echo esc_url((wp_get_attachment_image_src($thumb['image'], 'thumbnail')[0])) ?>" />
-										</picture>
-									</div>
-								<?php endforeach; ?>
-							</div>
-						<?php endif; ?>
-					</div>
+	<div class="background video-background">
+		<div class="video-background__el">
+			<video class="video-background__video js-video js-video-no-loop" src="<?php echo get_stylesheet_directory_uri(); ?>/app/video/Main-screen.mp4" autoplay="autoplay" muted="muted"></video>
+		</div>
+	</div>
+	<section class="hello-screen">
+		<div class="hello-screen__wrap wrap">
+			<div class="hello-screen__inner">
+				<div class="hello-screen__content content content_gray h5">
+					<h1>
+						All <span class="color-blue">3D </span>icons you need in one
+						place
+					</h1>
+					<p>
+						This is a collection of free, beautiful, trending 3D icons, that
+						you can use <br />
+						in your website, app or in any project. Search and click to
+						download.
+					</p>
 				</div>
-				<div class="card__column card__column_right">
-					<div class="card__sidebar">
-						<?php if ($icon['pay_status'] == 'premium') : ?>
-							<div class="card__box">
-								<h3 class="card__box-title h5 color-blue">
-									Premium version
-								</h3>
-								<div class="card__list">
-									<?php i3d_get_bullets($icon['premium_bullets']); ?>
-								</div>
-								<a href="https://payhip.com/b/<?php echo $icon['id']; ?>" data-product="<?php echo $icon['id']; ?>" data-theme="none" class="card__btn btn js-modal payhip-buy-button">
-									<span class="btn__text">Add to cart <?php echo $icon['currency']; ?> <?php echo $icon['price']; ?></span></a>
-							</div>
-						<?php endif; ?>
-						<div class="card__box">
-							<h3 class="card__box-title h5">Free version</h3>
-							<div class="card__list">
-								<?php i3d_get_bullets($icon['free_bullets']); ?>
-							</div>
-							<a class="card__btn btn btn_border js-show-popup" href="#cart"><span class="btn__text">Free download</span></a>
-						</div>
+				<?php echo get_search_form(); ?>
+				<div class="hello-screen__bottom">
+					<div class="hello-screen__switcher switcher">
+						<span class="switcher__link is-active">Icons</span>
+						<a class="switcher__link" href="/packs.html">Icon packs</a>
 					</div>
 				</div>
 			</div>
+		</div>
+	</section>
+	<section class="icons-list">
+		<div class="icons-list__wrap wrap">
+			<?php if (have_posts()) : ?>
+				<div class="icons-list__row flex">
+					<?php while (have_posts()) : ?>
+						<?php
+						the_post();
+						get_template_part('template-parts/content', get_post_type());
+						?>
+					<?php endwhile; ?>
+				</div>
+				<div class="icons-list__bottom">
+					<?php the_posts_navigation(); ?>
+					<div class="icons-list__pagination flex pagination">
+						<a class="pagination__button pagination__button_prev" href="#"><svg class="icon icon-arrowLeft" viewBox="0 0 9 6">
+								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#arrowLeft"></use>
+							</svg></a><a class="pagination__button" href="#">1</a><a class="pagination__button" href="#">2</a><a class="pagination__button is-active" href="#">3</a><span class="pagination__button">...</span><a class="pagination__button" href="#">10</a><a class="pagination__button pagination__button_next" href="#"><svg class="icon icon-arrowLeft" viewBox="0 0 9 6">
+								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#arrowLeft"></use>
+							</svg></a>
+					</div>
+				</div>
+			<?php else : ?>
+				<?php get_template_part('template-parts/content', 'none'); ?>
+			<?php endif; ?>
 		</div>
 	</section>
 	<section class="recommend-list">
 		<div class="recommend-list__wrap wrap">
 			<div class="recommend-list__header flex flex_justify">
 				<div class="recommend-list__cell recommend-list__cell_title">
-					<h2 class="recommend-list__title h3">Related icon packs</h2>
+					<h2 class="recommend-list__title h3">Trending icon packs</h2>
 				</div>
 				<div class="recommend-list__cell recommend-list__cell_nav">
 					<a class="recommend-list__link arrow-link" href="#"><span class="arrow-link__text"> All icon packs</span><span class="arrow-link__icon"><svg class="icon icon-arrowRight" viewBox="0 0 24 24">
@@ -369,4 +326,5 @@ if ($icon['pay_status'] == 'premium') {
 		</div>
 	</section>
 </div>
+
 <?php get_footer(); ?>
