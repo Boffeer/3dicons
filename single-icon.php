@@ -5,18 +5,19 @@ $page_id = get_the_ID();
 $icon = array(
 	'id' => carbon_get_the_post_meta('product_id'),
 	'pay_status' => carbon_get_the_post_meta('pay_status'),
-	'free_bullets' => carbon_get_theme_option('free_icon_bullets'),
+	'free_bullets' => i3d_explode_textarea(carbon_get_theme_option('free_icons_bullets')),
 	'currency' => carbon_get_theme_option('currency_price'),
 	'price' => carbon_get_theme_option('icons_price'),
 );
 
 if ($icon['pay_status'] == 'premium') {
-	$icon['premium_bullets'] = carbon_get_theme_option('paid_icon_bullets');
+	$icon['premium_bullets'] = i3d_explode_textarea(carbon_get_theme_option('premium_icons_bullets'));
 }
 
-echo '<pre>';
-var_dump($icon);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($exploded);
+// echo '</pre>';
+
 ?>
 <div class="container">
 	<section class="card">

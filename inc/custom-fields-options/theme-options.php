@@ -32,41 +32,11 @@ $basic_options_container = Container::make('theme_options', 'i3d_theme_settings'
 				Field::make('text', 'lead_email', 'Lead Email')
 			))
 	))
-	->add_tab('Free Icons Bullets', array(
-		Field::make('complex', 'free_icon_bullets', 'Free Icons Bullets')
-			->setup_labels(array(
-				'plural_name' => 'Bullets',
-				'singular_name' => 'bullet'
-			))
-			->add_fields(array(
-				Field::make('radio', 'bullet_icon', 'Bullet_icon')
-					->add_options(array(
-						'check_blue' =>  'Check Blue',
-						'check_green' => 'Check Green',
-						'attention' => 'Attention'
-					))
-					->set_width(20),
-				Field::make('text', 'bullet', 'Bullet')
-					->set_width(80),
-			)),
-	))
-	->add_tab('Paid Icons Bullets', array(
-		Field::make('complex', 'paid_icon_bullets', 'Paid Icons Bullets')
-			->setup_labels(array(
-				'plural_name' => 'Bullets',
-				'singular_name' => 'bullet'
-			))
-			->add_fields(array(
-				Field::make('radio', 'bullet_icon', 'Bullet_icon')
-					->add_options(array(
-						'check_blue' =>  'Check Blue',
-						'check_green' => 'Check Green',
-						'attention' => 'Attention'
-					))
-					->set_width(20),
-				Field::make('text', 'bullet', 'Bullet')
-					->set_width(80),
-			)),
+	->add_tab('Icons Bullets', array(
+		Field::make('textarea', 'premium_icons_bullets', 'Premium Icons Bullets')
+			->set_rows(8),
+		Field::make('textarea', 'free_icons_bullets', 'Free Icons Bullets')
+			->set_rows(4),
 	))
 	->add_tab('Tags', array(
 		Field::make('complex', 'popuplar_tags', 'Tags')

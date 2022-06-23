@@ -198,3 +198,8 @@ function ast_register_custom_fields()
 	require get_template_directory() . '/inc/custom-fields-options/metabox.php';
 	require get_template_directory() . '/inc/custom-fields-options/theme-options.php';
 }
+
+/**
+ * Helpers
+ */
+require get_template_directory() . '/inc/helpers.php';
