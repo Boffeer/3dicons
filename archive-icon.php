@@ -25,7 +25,7 @@
 				<div class="hello-screen__bottom">
 					<div class="hello-screen__switcher switcher">
 						<span class="switcher__link is-active">Icons</span>
-						<a class="switcher__link" href="/packs.html">Icon packs</a>
+						<a class="switcher__link" href="<?php echo esc_url(get_post_type_archive_link('packs')); ?>">Icon packs</a>
 					</div>
 				</div>
 			</div>
