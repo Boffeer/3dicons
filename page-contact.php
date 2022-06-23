@@ -5,10 +5,11 @@
 		<div class="contact__wrap wrap">
 			<div class="contact__row flex flex_vertical flex_justify">
 				<div class="contact__column contact__column_left">
-					<h1 class="contact__title h2">Contact</h1>
+					<h1 class="contact__title h2"><?php the_title(); ?></h1>
 					<div class="contact__desc color-gray h5">
 						If you have any questions or suggestions, <br />we would be
 						happy to chat with you.
+						<?php the_content(); ?>
 					</div>
 					<form class="contact__form form" action="<?php echo get_stylesheet_directory_uri(); ?>/app/mail/">
 						<div class="form__field field">
