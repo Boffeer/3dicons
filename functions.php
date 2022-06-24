@@ -185,6 +185,11 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/customizer.php';
 
 /**
+ * Shortcodes
+ */
+require get_template_directory() . '/inc/shortcodes.php';
+
+/**
  * Custom posts types
  */
 require get_template_directory() . '/inc/custom-posts.php';

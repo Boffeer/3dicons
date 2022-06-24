@@ -89,3 +89,54 @@ function i3d_search_form_togglable($form)
 		</form>';
 	return $form;
 }
+
+// add_filter('navigation_markup_template', 'i3d_navigation_template', 10, 2);
+function i3d_navigation_template($template, $class)
+{
+	/*
+	Вид базового шаблона:
+	<nav class="navigation %1$s" role="navigation">
+		<h2 class="screen-reader-text">%2$s</h2>
+		<div class="nav-links">%3$s</div>
+	</nav>
+	*/
+
+	return '
+	<div class="icons-list__pagination flex pagination %1$s">
+		<h2 class="screen-reader-text">%2$s</h2>
+		<a class="pagination__button" href="#">%3$s</a>
+	</div>';
+}
+
+function i3d_custom_pagination()
+{
+	$nav     = get_the_posts_pagination(array(
+		'mid_size' => 3,
+		'mid_size' => 3,
+		'end_size' => 1,
+		'prev_text' => '<svg class="icon icon-arrowLeft" viewBox="0 0 9 6"> <use xlink:href="' . get_stylesheet_directory_uri() . '/app/icons/sprite.svg#arrowLeft"></use> </svg>',
+		'next_text' => '<svg class="icon icon-arrowLeft" viewBox="0 0 9 6"> <use xlink:href="' . get_stylesheet_directory_uri() . '/app/icons/sprite.svg#arrowLeft"></use> </svg>'
+	));
+	$search  = [
+		'<nav class="navigation pagination" role="navigation">',
+		'<div class="nav-links">',
+		'</div>',
+		'<a class="page-numbers"',
+		'<a class="prev page-numbers"',
+		'<a class="next page-numbers"',
+		'<span aria-current="page" class="page-numbers current"',
+		'<span class="page-numbers dots">',
+	];
+	$replace = [
+		'<nav>',
+		'<div class="icons-list__pagination flex pagination">',
+		'</div>',
+		'<a class="pagination__button"',
+		'<a class="pagination__button pagination__button_prev"',
+		'<a class="pagination__button pagination__button_next"',
+		'<span aria-current="page" class="pagination__button is-active"',
+		'<span class="pagination__button"',
+	];
+	$nav  = str_replace($search, $replace, $nav);
+	return $nav;
+}
