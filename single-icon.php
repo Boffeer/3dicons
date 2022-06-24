@@ -36,7 +36,7 @@ if ($icon['pay_status'] == 'premium') {
 							<div class="card__slide js-slide">
 								<div class="card__img">
 									<picture>
-										<!-- <source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack__img264.webp" /> -->
+										<source type="image/webp" srcset="<?php echo i3d_watermarked_url_by_id(get_the_ID()); ?>.webp" />
 										<img src="<?php echo i3d_watermarked_url_by_id(get_the_ID()); ?>" />
 									</picture>
 								</div>
@@ -49,8 +49,7 @@ if ($icon['pay_status'] == 'premium') {
 									<div class="card__slide js-slide">
 										<div class="card__img">
 											<picture>
-												<!-- <source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack__img264-2.webp" /> -->
-												<!-- <img src="<?php echo esc_url((wp_get_attachment_image_src($thumb['image'], 'medium')[0])) ?>" /> -->
+												<source type="image/webp" srcset="<?php echo i3d_watermarked_url_by_id($thumb['image']); ?>.webp" />
 												<img src="<?php echo i3d_watermarked_url_by_id($thumb['image']); ?>" />
 											</picture>
 										</div>
@@ -65,14 +64,14 @@ if ($icon['pay_status'] == 'premium') {
 							<div class="card__thumbnails flex flex_center">
 								<div class="card__preview is-active js-preview">
 									<picture>
-										<!-- <source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack__img48.webp" /> -->
+										<source type="image/webp" srcset="<?php echo esc_url((wp_get_attachment_image_src(get_post_thumbnail_id(get_the_id()), 'thumbnail')[0])) ?>.webp" />
 										<img src="<?php echo esc_url((wp_get_attachment_image_src(get_post_thumbnail_id(get_the_id()), 'thumbnail')[0])) ?>" />
 									</picture>
 								</div>
 								<?php foreach ($icon['thumbs'] as $thumb) : ?>
 									<div class="card__preview js-preview">
 										<picture>
-											<!-- <source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack__img48.webp" /> -->
+											<source type="image/webp" srcset="<?php echo esc_url((wp_get_attachment_image_src($thumb['image'], 'thumbnail')[0])) ?>.webp" />
 											<img src="<?php echo esc_url((wp_get_attachment_image_src($thumb['image'], 'thumbnail')[0])) ?>" />
 										</picture>
 									</div>

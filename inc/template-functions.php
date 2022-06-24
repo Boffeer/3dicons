@@ -313,6 +313,6 @@ function i3d_watermarked_url_by_id($id)
 		'w' => $image[1],
 		'h' => $image[2]
 	);
-	return esc_url(i3d_watermarked_url($url, $sizes)) . '?' . $sizes['w'] . 'x' . $sizes['h'];
+	return esc_url(i3d_watermarked_url($url, $sizes));
 }
 // #endregion watermark
