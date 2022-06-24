@@ -19,7 +19,7 @@ if ($icon['pay_status'] == 'premium') {
 <div class="container">
 	<section class="card">
 		<div class="card__wrap wrap">
-			<a class="card__link arrow-link arrow-link_back" href="/pack.html"><span class="arrow-link__text"> Back to icons</span><span class="arrow-link__icon"><svg class="icon icon-arrowRight" viewBox="0 0 24 24">
+			<a class="card__link arrow-link arrow-link_back" href="<?php echo esc_url(get_post_type_archive_link($post_type)) ?>"><span class="arrow-link__text"> Back to icons</span><span class="arrow-link__icon"><svg class="icon icon-arrowRight" viewBox="0 0 24 24">
 						<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#arrowRight"></use>
 					</svg></span></a>
 			<div class="card__row flex">

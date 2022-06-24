@@ -12,7 +12,7 @@ $pack = array(
 		<div class="pack-head__wrap wrap">
 			<div class="pack-head__row flex flex_justify flex_bottom">
 				<div class="pack-head__column pack-head__column_left">
-					<a class="pack-head__link arrow-link arrow-link_back" href="#"><span class="arrow-link__text"> Back to packs</span><span class="arrow-link__icon"><svg class="icon icon-arrowRight" viewBox="0 0 24 24">
+					<a class="pack-head__link arrow-link arrow-link_back" href="<?php echo esc_url(get_post_type_archive_link($post_type)); ?>"><span class="arrow-link__text"> Back to packs</span><span class="arrow-link__icon"><svg class="icon icon-arrowRight" viewBox="0 0 24 24">
 								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#arrowRight"></use>
 							</svg></span></a>
 					<div class="pack-head__name">
