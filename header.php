@@ -46,45 +46,7 @@
 						<a class="header__logo h3 logo" href="#">Free<span class="color-blue">3D</span>icon</a>
 					</div>
 					<div class="header__cell header__cell_search">
-						<form class="header__search js-without-validation search search_small" action="">
-							<div class="search__row">
-								<div class="search__cell search__cell_nav">
-									<div class="search__select js-select select">
-										<input class="select__input js-select-input" type="hidden" name="type" value="all" />
-										<div class="select__header js-select-head">
-											<div class="select__name js-select-label">
-												All assets
-											</div>
-											<div class="select__arrow">
-												<svg class="icon icon-arrow" viewBox="0 0 12 12">
-													<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#arrow"></use>
-												</svg>
-											</div>
-										</div>
-										<div class="select__dropdown">
-											<ul class="select__list">
-												<li class="select__item js-select-option" data-value="all">
-													All assets
-												</li>
-												<li class="select__item js-select-option" data-value="icon">
-													Icons
-												</li>
-												<li class="select__item js-select-option" data-value="packs">
-													Icon packs
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="search__cell search__cell_field">
-									<input class="search__input" name="s" type="text" placeholder="Search from all assets..." /><button class="search__button">
-										<svg class="icon icon-loupe" viewBox="0 0 24 24">
-											<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#loupe"></use>
-										</svg>
-									</button>
-								</div>
-							</div>
-						</form>
+						<?php echo get_search_form(); ?>
 					</div>
 					<div class="header__cell header__cell_menu">
 						<ul class="header__menu flex little-menu">

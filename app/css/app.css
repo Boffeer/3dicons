@@ -3389,3 +3389,8 @@ h6 {
     display: none;
   }
 }
+
+/* Fixes */
+.header form.search .search__tags {
+  display: none;
+}
