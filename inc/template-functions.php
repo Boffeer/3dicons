@@ -64,7 +64,6 @@ function i3d_custom_pagination()
 {
 	$nav     = get_the_posts_pagination(array(
 		'mid_size' => 3,
-		'mid_size' => 3,
 		'end_size' => 1,
 		'prev_text' => '<svg class="icon icon-arrowLeft" viewBox="0 0 9 6"> <use xlink:href="' . get_stylesheet_directory_uri() . '/app/icons/sprite.svg#arrowLeft"></use> </svg>',
 		'next_text' => '<svg class="icon icon-arrowLeft" viewBox="0 0 9 6"> <use xlink:href="' . get_stylesheet_directory_uri() . '/app/icons/sprite.svg#arrowLeft"></use> </svg>'
@@ -115,6 +114,23 @@ function i3d_custom_popular_tags($count)
 	$tags  = str_replace($search, $replace, $tags);
 	return $tags;
 }
+function i3d_no_results_popular_tags($count = 42)
+{
+	$tags = i3d_get_search_meter($count);
+	$search  = [
+		'<ul>',
+		'<li>',
+		'<a href',
+	];
+	$replace = [
+		'<ul class="popular-keywords__list flex">',
+		'<li class="popular-keywords__item">',
+		'<a class="popular-keywords__link" href',
+	];
+	$tags  = str_replace($search, $replace, $tags);
+	return $tags;
+}
+
 
 function i3d_get_related_packs_by_post_tags($id)
 {

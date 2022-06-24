@@ -46,7 +46,7 @@ function kama_fix_search_pagination($result)
 				</div>
 				<?php echo i3d_custom_pagination();
 				?>
-				<?php //the_posts_navigation() 
+				<?php //the_posts_navigation()
 				?>
 			<?php else : ?>
 				<?php get_template_part('template-parts/content', 'none'); ?>

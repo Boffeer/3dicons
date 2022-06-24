@@ -380,110 +380,27 @@
 	</section>
 </div> -->
 
-<section class="no-results not-found">
-	<div class="container">
-		<section class="search-result">
-			<div class="search-result__wrap wrap">
-				<?php if (is_search()) : ?>
-					<h2 class="search-result__title h3">
-						Search results for: <span class="color-blue">kjau</span>
-					</h2>
-				<?php endif; ?>
-				<div class="search-result__text h4">
-					Sorry, nothing found ... Please try other keywords
-				</div>
+<div class="container">
+	<section class="search-result">
+		<div class="search-result__wrap wrap">
+			<?php if (is_search()) : ?>
+				<h2 class="search-result__title h3">
+					Search results for: <span class="color-blue">kjau</span>
+				</h2>
+			<?php endif; ?>
+			<div class="search-result__text h4">
+				Sorry, nothing found ... Please try other keywords
 			</div>
-		</section>
-		<section class="popular-keywords">
-			<div class="popular-keywords__wrap wrap">
-				<h2 class="popular-keywords__title h3">Popular keywords</h2>
-				<ul class="popular-keywords__list flex">
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">3 D</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">NftD</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Gift</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Person</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Education</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Development</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Boy</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Gift</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Person</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Education</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Development</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Boy</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Gift</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Person</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Education</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Development</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Boy</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Gift</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Person</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Education</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Development</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Boy</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Gift</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Person</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Education</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Development</a>
-					</li>
-					<li class="popular-keywords__item">
-						<a class="popular-keywords__link" href="#">Boy</a>
-					</li>
-				</ul>
-			</div>
-		</section>
+		</div>
+	</section>
+	<section class="popular-keywords">
+		<div class="popular-keywords__wrap wrap">
+			<h2 class="popular-keywords__title h3">Popular keywords</h2>
+			<?php echo i3d_no_results_popular_tags();
+			?>
+		</div>
+	</section>
 
-		<?php echo do_shortcode('[trending type="packs"]'); ?>
-		<?php echo do_shortcode('[trending]'); ?>
-	</div>
-</section><!-- .no-results -->
+	<?php echo do_shortcode('[trending type="packs"]'); ?>
+	<?php echo do_shortcode('[trending]'); ?>
+</div>
