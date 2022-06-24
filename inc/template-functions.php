@@ -229,11 +229,11 @@ function water_mark($meta, $id)
 	if (isset($path)) {
 		$file = trailingslashit($upload_path['basedir'] . '/') . $meta['file'];
 		// $water_path = trailingslashit($upload_path['basedir'] . '/') . 'watermark.png';
-		$water_path = wp_upload_dir()['baseurl'] . '/watermarks/2-2.png';
+		$water_path = wp_upload_dir()['baseurl'] . '/watermarks/' . mt_rand(1, 3)  . '-' . mt_rand(1, 3) . '.png';
 	} else {
 		$file = trailingslashit($upload_path['path']) . $meta['file'];
 		// $water_path = trailingslashit($upload_path['path']) . 'watermarks/2-2.png';
-		$water_path = wp_upload_dir()['baseurl'] . '/watermarks/2-2.png';
+		$water_path = wp_upload_dir()['baseurl'] . '/watermarks/' . mt_rand(1, 3)  . '-' . mt_rand(1, 3) . '.png';
 	}
 
 	//list original image dimensions
@@ -245,12 +245,14 @@ function water_mark($meta, $id)
 
 	//if your watermark is a transparent png uncomment below
 	imagealphablending($watermark, 1);
+	imagesavealpha($watermark, true);
 
 	//load fullsize image
 	$image = wp_load_image($file);
 
 	//if your watermark is a transparent png uncomment below
 	imagealphablending($image, 1);
+	imagesavealpha($image, true);
 
 	//greyscale image
 	// imagefilter($image, IMG_FILTER_GRAYSCALE);
