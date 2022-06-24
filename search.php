@@ -16,12 +16,18 @@ function kama_fix_search_pagination($result)
 	$glue = strpos($result, '?') ? '&' : '?';
 	return $result . $glue . "s={$_REQUEST['s']}";
 }
+
+foreach ($posts as $key => $post) {
+	if ($post->post_type === 'page') {
+		unset($posts[$key]);
+	}
+}
 ?>
 
 <div class="container">
 	<section class="search-result">
 		<div class="search-result__wrap wrap">
-			<?php if (have_posts()) : ?>
+			<?php if (have_posts() && count($posts)) : ?>
 				<h2 class="search-result__title h3">
 					<?php
 					/* translators: %s: search query. */
@@ -33,7 +39,7 @@ function kama_fix_search_pagination($result)
 	</section>
 	<section class="icons-list">
 		<div class="icons-list__wrap wrap">
-			<?php if (have_posts()) : ?>
+			<?php if (have_posts() && count($posts)) : ?>
 				<div class="icons-list__row flex">
 					<?php
 					/* Start the Loop */

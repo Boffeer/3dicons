@@ -212,3 +212,74 @@ function i3d_render_related_by_tag_packs($id)
 	i3d_render_related_packs($related_packs);
 	return ob_get_clean();
 }
+
+
+// https://stackoverflow.com/questions/12388796/adding-watermarking-to-wordpress-function-php
+function water_mark($meta, $id)
+{
+
+	if (!isset($meta['sizes'])) {
+		return $meta;
+	}
+
+	$upload_path = wp_upload_dir();
+	$path = $upload_path['basedir'];
+
+	//handle the different media upload directory structures
+	if (isset($path)) {
+		$file = trailingslashit($upload_path['basedir'] . '/') . $meta['file'];
+		// $water_path = trailingslashit($upload_path['basedir'] . '/') . 'watermark.png';
+		$water_path = wp_upload_dir()['baseurl'] . '/watermarks/2-2.png';
+	} else {
+		$file = trailingslashit($upload_path['path']) . $meta['file'];
+		// $water_path = trailingslashit($upload_path['path']) . 'watermarks/2-2.png';
+		$water_path = wp_upload_dir()['baseurl'] . '/watermarks/2-2.png';
+	}
+
+	//list original image dimensions
+	list($orig_w, $orig_h, $orig_type) = @getimagesize($file);
+
+	//load watermark - list its dimensions
+	$watermark = imagecreatefrompng($water_path);
+	list($wm_width, $wm_height, $wm_type) = @getimagesize($water_path);
+
+	//if your watermark is a transparent png uncomment below
+	imagealphablending($watermark, 1);
+
+	//load fullsize image
+	$image = wp_load_image($file);
+
+	//if your watermark is a transparent png uncomment below
+	imagealphablending($image, 1);
+
+	//greyscale image
+	// imagefilter($image, IMG_FILTER_GRAYSCALE);
+
+	//create merged copy
+	//if your watermark is a transparent png uncomment below
+	imagecopy($image, $watermark, $orig_w - ($wm_width - 9), $orig_h - ($wm_height - 9), 0, 0, $wm_width, $wm_height);
+
+	//if your watermark is a transparent png comment out below
+	// imagecopymerge($image, $watermark, $orig_w - ($wm_width + 10), $orig_h - ($wm_height + 10), 0, 0, $wm_width, $wm_height, 70);
+
+	//save image backout
+	switch ($orig_type) {
+		case IMAGETYPE_GIF:
+			imagegif($image, $file);
+			break;
+		case IMAGETYPE_PNG:
+			imagepng($image, $file, 9);
+			break;
+		case IMAGETYPE_JPEG:
+			imagejpeg($image, $file, 95);
+			break;
+	}
+
+	imagedestroy($watermark);
+	imagedestroy($image);
+
+	//return metadata info
+	wp_update_attachment_metadata($id, $meta);
+	return $meta;
+}
+add_filter('wp_generate_attachment_metadata', 'water_mark', 10, 2);

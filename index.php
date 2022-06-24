@@ -13,6 +13,8 @@
  * @package i3d
  */
 
+wp_redirect(esc_url(get_post_type_archive_link('icon')));
+exit;
 get_header();
 ?>
 
