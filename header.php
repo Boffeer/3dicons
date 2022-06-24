@@ -43,7 +43,7 @@
 			<div class="header__wrap wrap wrap_big">
 				<div class="header__row flex">
 					<div class="header__cell header__cell_logo">
-						<a class="header__logo h3 logo" href="#">Free<span class="color-blue">3D</span>icon</a>
+						<a class="header__logo h3 logo" href="<?php echo esc_url(get_post_type_archive_link('icon')); ?>">Free<span class="color-blue">3D</span>icon</a>
 					</div>
 					<div class="header__cell header__cell_search">
 						<?php echo get_search_form(); ?>

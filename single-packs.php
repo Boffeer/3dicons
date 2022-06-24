@@ -52,20 +52,12 @@ $pack = array(
 				?>
 			</div>
 			<div class="icons-list__bottom">
-				<div class="icons-list__pagination flex pagination">
-					<a class="pagination__button pagination__button_prev" href="#"><svg class="icon icon-arrowLeft" viewBox="0 0 9 6">
-							<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#arrowLeft"></use>
-						</svg></a><a class="pagination__button" href="#">1</a><a class="pagination__button" href="#">2</a><a class="pagination__button is-active" href="#">3</a><span class="pagination__button">...</span><a class="pagination__button" href="#">10</a><a class="pagination__button pagination__button_next" href="#"><svg class="icon icon-arrowLeft" viewBox="0 0 9 6">
-							<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#arrowLeft"></use>
-						</svg></a>
-				</div>
+				<?php echo i3d_custom_pagination(); ?>
 			</div>
 		</div>
 	</section>
 
-	<?php
-	$related_packs = i3d_render_related_by_tag_packs(get_the_id()); ?>
-	?>
+	<?php $related_packs = i3d_render_related_by_tag_packs(get_the_id()); ?>
 	<?php if ($related_packs) : ?>
 		<section class="recommend-list">
 			<div class="recommend-list__wrap wrap">

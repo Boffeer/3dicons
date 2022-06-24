@@ -16,7 +16,7 @@
 	<div class="footer__wrap wrap">
 		<div class="footer__row flex flex_vertical">
 			<div class="footer__cell footer__cell_logo">
-				<a class="footer__logo h3 logo logo_white" href="#">Free<span class="color-blue">3D</span>icon</a>
+				<a class="footer__logo h3 logo logo_white" href="<?php echo esc_url(get_post_type_archive_link('icon')); ?>">Free<span class="color-blue">3D</span>icon</a>
 			</div>
 			<div class="footer__cell footer__cell_copy">
 				<div class="footer__copy">© 2022, Free3Dicon LLC.</div>
