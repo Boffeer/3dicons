@@ -63,16 +63,18 @@
 				'suppress_filters' => true,
 			));
 			?>
-			<?php foreach ($pack_icons as $post) : ?>
-				<?php setup_postdata($post); ?>
-				<div class="item-pack__image">
-					<div class="item-pack__placeholder">
-						<picture>
-							<!-- <source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack-1.webp" /> -->
-							<img src="<?php echo esc_url((wp_get_attachment_image_src(get_post_thumbnail_id(get_the_id()), 'thumbnail')[0])) ?>" alt="<?php the_title(); ?>" role="presentation" />
-						</picture>
+			<?php foreach ($pack_icons as $key => $post) : ?>
+				<?php if ($key < 6) : ?>
+					<?php setup_postdata($post); ?>
+					<div class="item-pack__image">
+						<div class="item-pack__placeholder">
+							<picture>
+								<!-- <source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack-1.webp" /> -->
+								<img src="<?php echo esc_url((wp_get_attachment_image_src(get_post_thumbnail_id(get_the_id()), 'thumbnail')[0])) ?>" alt="<?php the_title(); ?>" role="presentation" />
+							</picture>
+						</div>
 					</div>
-				</div>
+				<?php endif; ?>
 			<?php endforeach; ?>
 			<?php wp_reset_postdata(); ?>
 		</div>

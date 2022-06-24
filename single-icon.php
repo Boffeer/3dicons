@@ -16,6 +16,12 @@ if ($icon['pay_status'] == 'premium') {
 }
 
 ?>
+<?php
+// echo '<pre>';
+// var_dump(wp_get_attachment_image_src(get_post_thumbnail_id(get_the_id())));
+// echo '</pre>';
+
+?>
 <div class="container">
 	<section class="card">
 		<div class="card__wrap wrap">
@@ -31,21 +37,21 @@ if ($icon['pay_status'] == 'premium') {
 								<div class="card__img">
 									<picture>
 										<!-- <source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack__img264.webp" /> -->
-										<img src="<?php echo esc_url((wp_get_attachment_image_src(get_post_thumbnail_id(get_the_id()), 'medium')[0])) ?>" />
+										<img src="<?php echo i3d_watermarked_url_by_id(get_the_ID()); ?>" />
 									</picture>
 								</div>
 								<div class="card__caption color-gray h6">
 									Perspective / Matte
 								</div>
 							</div>
-
 							<?php if ($icon['thumbs'] && $icon['pay_status'] == 'premium') : ?>
 								<?php foreach ($icon['thumbs'] as $thumb) : ?>
 									<div class="card__slide js-slide">
 										<div class="card__img">
 											<picture>
 												<!-- <source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/pack__img264-2.webp" /> -->
-												<img src="<?php echo esc_url((wp_get_attachment_image_src($thumb['image'], 'medium')[0])) ?>" />
+												<!-- <img src="<?php echo esc_url((wp_get_attachment_image_src($thumb['image'], 'medium')[0])) ?>" /> -->
+												<img src="<?php echo i3d_watermarked_url_by_id($thumb['image']); ?>" />
 											</picture>
 										</div>
 										<div class="card__caption color-gray h6">

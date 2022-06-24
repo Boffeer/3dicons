@@ -213,7 +213,15 @@ function i3d_render_related_by_tag_packs($id)
 	return ob_get_clean();
 }
 
+// add_action('after_setup_theme', 'water_mark');
+// function themename_watermark()
+// {
+// 	add_image_size('watermarked', 500, 650, true);
+// }
 
+
+// #region watermark
+add_filter('wp_generate_attachment_metadata', 'water_mark', 10, 2);
 // https://stackoverflow.com/questions/12388796/adding-watermarking-to-wordpress-function-php
 function water_mark($meta, $id)
 {
@@ -284,4 +292,27 @@ function water_mark($meta, $id)
 	wp_update_attachment_metadata($id, $meta);
 	return $meta;
 }
-add_filter('wp_generate_attachment_metadata', 'water_mark', 10, 2);
+
+function i3d_get_thumb($id)
+{
+	if ($id == get_the_ID()) {
+		return wp_get_attachment_image_src(get_post_thumbnail_id($id), 'medium');
+	} else {
+		return wp_get_attachment_image_src($id, 'medium');
+	}
+}
+function i3d_watermarked_url($url, $sizes)
+{
+	return str_replace("-{$sizes['w']}x{$sizes['h']}", '', $url);
+}
+function i3d_watermarked_url_by_id($id)
+{
+	$image = i3d_get_thumb($id);
+	$url = $image[0];
+	$sizes = array(
+		'w' => $image[1],
+		'h' => $image[2]
+	);
+	return esc_url(i3d_watermarked_url($url, $sizes)) . '?' . $sizes['w'] . 'x' . $sizes['h'];
+}
+// #endregion watermark

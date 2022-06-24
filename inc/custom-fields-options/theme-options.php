@@ -82,8 +82,8 @@ Container::make('post_meta', 'product_info', 'Product Info')
 			->set_width(50),
 		Field::make('radio', 'pay_status', 'Pay Status')
 			->add_options(array(
-				'premium' =>  'Premium',
 				'free' => 'Free',
+				'premium' =>  'Premium',
 			)),
 		Field::make('complex', 'thumbs', 'Thumbnails')
 			->set_conditional_logic(array(
