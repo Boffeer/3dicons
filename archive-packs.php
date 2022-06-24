@@ -20,48 +20,7 @@
 						download.
 					</p>
 				</div>
-				<form class="hello-screen__search js-without-validation search" action="">
-					<div class="search__row">
-						<div class="search__cell search__cell_nav">
-							<div class="search__select js-select select">
-								<input class="select__input js-select-input" type="hidden" name="type" value="all" />
-								<div class="select__header js-select-head">
-									<div class="select__name js-select-label">
-										All assets
-									</div>
-									<div class="select__arrow">
-										<svg class="icon icon-arrow" viewBox="0 0 12 12">
-											<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#arrow"></use>
-										</svg>
-									</div>
-								</div>
-								<div class="select__dropdown">
-									<ul class="select__list">
-										<li class="select__item js-select-option" data-value="all">
-											All assets
-										</li>
-										<li class="select__item js-select-option" data-value="icon">
-											Icons
-										</li>
-										<li class="select__item js-select-option" data-value="packs">
-											Icon packs
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="search__cell search__cell_field">
-							<input class="search__input" name="s" type="text" placeholder="Search from all assets..." /><button class="search__button">
-								<svg class="icon icon-loupe" viewBox="0 0 24 24">
-									<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#loupe"></use>
-								</svg>
-							</button>
-						</div>
-					</div>
-					<div class="search__tags h6">
-						<span class="search__label color-gray">Popular:</span><a class="search__tag" href="#">Instagram, </a><a class="search__tag" href="#">Bitcoin, </a><a class="search__tag" href="#">Phone, </a><a class="search__tag" href="#">Car, </a><a class="search__tag" href="#">Crypto, </a><a class="search__tag" href="#">Design, </a><a class="search__tag" href="#">Laptop</a>
-					</div>
-				</form>
+				<?php echo get_search_form(); ?>
 				<div class="hello-screen__bottom">
 					<div class="hello-screen__switcher switcher">
 						<a class="switcher__link" href="<?php echo esc_url(get_post_type_archive_link('icon')); ?>">Icons</a><span class="switcher__link is-active">Icon packs</span>

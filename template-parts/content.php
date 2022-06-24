@@ -37,6 +37,7 @@
 		'id' => carbon_get_the_post_meta('product_id'),
 		'icons' => carbon_get_the_post_meta('pack_icons'),
 		'currency' => carbon_get_theme_option('currency_price'),
+		'title' => $post->post_title
 	);
 	?>
 	<div class="icons-list__item item-pack">
@@ -76,7 +77,8 @@
 			<?php wp_reset_postdata(); ?>
 		</div>
 		<div class="item-pack__bottom flex flex_center small">
-			<div class="item-pack__name"><?php the_title(); ?></div>
+			<div class="item-pack__name"><?php echo $pack['title'];
+																		?></div>
 			<div class="item-pack__count"><?php echo count($pack['icons']); ?></div>
 		</div>
 	</div>

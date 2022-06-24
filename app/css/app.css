@@ -3116,6 +3116,12 @@ h6 {
   -webkit-transition: ease 0.1s;
   transition: ease 0.1s;
 }
+.search__tag::after {
+  content: ",";
+}
+.search__tag:last-child:after {
+  content: "";
+}
 .search__tag:hover {
   color: #3952ff;
 }

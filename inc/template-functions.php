@@ -43,69 +43,21 @@ add_action('wp_head', 'i3d_pingback_header');
 /**
  * Change search form
  */
-add_filter('get_search_form', 'i3d_search_form_togglable');
-function i3d_search_form_togglable($form)
+add_filter('get_search_form', 'i3d_search_form');
+function i3d_search_form($form)
 {
-	$form = '
-		<form class="hello-screen__search search js-without-validation" action="' . home_url('/') . '">
-			<div class="search__row">
-				<div class="search__cell search__cell_nav">
-					<div class="search__select js-select select">
-						<input class="select__input js-select-input" type="hidden" name="type" value="all" />
-						<div class="select__header js-select-head">
-							<div class="select__name js-select-label">All assets</div>
-							<div class="select__arrow">
-								<svg class="icon icon-arrow" viewBox="0 0 12 12">
-									<use xlink:href="' . get_stylesheet_directory_uri() . '/app/icons/sprite.svg#arrow"></use>
-								</svg>
-							</div>
-						</div>
-						<div class="select__dropdown">
-							<ul class="select__list">
-								<li class="select__item js-select-option" data-value="all">
-									All assets
-								</li>
-								<li class="select__item js-select-option" data-value="icon">
-									Icons
-								</li>
-								<li class="select__item js-select-option" data-value="packs">
-									Icon packs
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="search__cell search__cell_field">
-					<input class="search__input" name="s" type="text" placeholder="Search from all assets..." /><button class="search__button">
-						<svg class="icon icon-loupe" viewBox="0 0 24 24">
-							<use xlink:href="' . get_stylesheet_directory_uri() . '/app/icons/sprite.svg#loupe"></use>
-						</svg>
-					</button>
-				</div>
-			</div>
-			<div class="search__tags h6">
-				<span class="search__label color-gray">Popular:</span><a class="search__tag" href="#">Instagram, </a><a class="search__tag" href="#">Bitcoin, </a><a class="search__tag" href="#">Phone, </a><a class="search__tag" href="#">Car, </a><a class="search__tag" href="#">Crypto, </a><a class="search__tag" href="#">Design, </a><a class="search__tag" href="#">Laptop</a>
-			</div>
-		</form>';
+	$form = i3d_search_start();
+	$form .= i3d_get_search_tags(42);
+	$form .= '</form>';
 	return $form;
 }
 
-// add_filter('navigation_markup_template', 'i3d_navigation_template', 10, 2);
-function i3d_navigation_template($template, $class)
+function i3d_get_search_meter($count)
 {
-	/*
-	Вид базового шаблона:
-	<nav class="navigation %1$s" role="navigation">
-		<h2 class="screen-reader-text">%2$s</h2>
-		<div class="nav-links">%3$s</div>
-	</nav>
-	*/
-
-	return '
-	<div class="icons-list__pagination flex pagination %1$s">
-		<h2 class="screen-reader-text">%2$s</h2>
-		<a class="pagination__button" href="#">%3$s</a>
-	</div>';
+	ob_start();
+	sm_list_popular_searches('', '', $count);
+?>
+	<?php return ob_get_clean();
 }
 
 function i3d_custom_pagination()
@@ -139,4 +91,108 @@ function i3d_custom_pagination()
 	];
 	$nav  = str_replace($search, $replace, $nav);
 	return $nav;
+}
+
+function i3d_custom_popular_tags($count)
+{
+	$tags = i3d_get_search_meter($count);
+	$search  = [
+		'<ul>',
+		'</ul>',
+		'<li>',
+		'</li>',
+		'<a href',
+		'</a>',
+	];
+	$replace = [
+		'',
+		'',
+		'',
+		'',
+		'<a class="search__tag" href',
+		'</a>'
+	];
+	$tags  = str_replace($search, $replace, $tags);
+	return $tags;
+}
+
+function i3d_get_related_packs_by_post_tags($id)
+{
+	$tags = get_the_tags($id);
+	if (empty($tags)) {
+		return;
+	}
+
+	$packs_to_show = array();
+	$max_packs_to_show = 4;
+	$tags_filter = '';
+
+	foreach ($tags as $tag) {
+		$tags_filter .= $tag->name . ',';
+	}
+
+	$packs = get_posts(array(
+		'numberposts' => $max_packs_to_show,
+		'post_type'   => 'packs',
+		'tag' => $tags_filter,
+		'suppress_filters' => true,
+	));
+
+	foreach ($packs as $pack) {
+		$packs_to_show[] = $pack->ID;
+	}
+
+	return $packs_to_show;
+}
+
+function i3d_get_related_packs_to_icon($current_icon_id)
+{
+	$packs_to_show = array();
+	$max_packs_to_show = 4;
+
+	$packs = get_posts(array(
+		'numberposts' => -1,
+		'post_type'   => 'packs',
+		'suppress_filters' => true,
+	));
+
+	foreach ($packs as $pack) {
+		$pack_info = array(
+			'id' => $pack->ID,
+			'post_title' => $pack->post_title,
+			'post_type' => $pack->post_type,
+			'icons' => carbon_get_post_meta($pack_info['id'], 'pack_icons'),
+		);
+
+		foreach ($pack_info['icons'] as $icon) {
+			if (!in_array($current_icon_id, $icon) && $packs_to_show >= $max_packs_to_show) {
+				break;
+			}
+			$packs_to_show[] = $pack_info['id'];
+		}
+	}
+}
+
+function i3d_render_related_packs($packs_to_show)
+{
+	$packs_to_show = get_posts(array(
+		'numberposts' => 4,
+		'post_type'   => 'packs',
+		'include' => $packs_to_show,
+		'suppress_filters' => true,
+	));
+	global $post;
+	foreach ($packs_to_show as $post) {
+		setup_postdata($post);
+		get_template_part('template-parts/content', $post->post_type, $post->post_title);
+	}
+	wp_reset_postdata($post);
+}
+
+function i3d_render_related_by_tag_packs($id)
+{
+	$related_packs = i3d_get_related_packs_by_post_tags($id);
+	ob_start();
+	i3d_render_related_packs($related_packs);
+	return ob_get_clean();
 }
