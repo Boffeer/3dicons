@@ -151,7 +151,7 @@ function i3d_scripts()
 
 	wp_enqueue_script('i3d-scripts', get_stylesheet_directory_uri() . '/app/js/app.js', array(), _S_VERSION, true);
 
-	// wp_enqueue_script('i3d-payhip', '//payhip.com/payhip.js', array(), _S_VERSION, false);
+	wp_enqueue_script('i3d-payhip', '//payhip.com/payhip.js', array(), _S_VERSION, false);
 
 	// wp_enqueue_style('i3d-style', get_stylesheet_uri(), array(), _S_VERSION);
 	// wp_style_add_data('i3d-style', 'rtl', 'replace');
