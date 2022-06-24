@@ -33,9 +33,9 @@ $basic_options_container = Container::make('theme_options', 'i3d_theme_settings'
 			))
 	))
 	->add_tab('Icons Bullets', array(
-		Field::make('textarea', 'premium_icons_bullets', 'Premium Icons Bullets')
+		Field::make('rich_text', 'premium_icons_bullets', 'Premium Icons Bullets')
 			->set_rows(8),
-		Field::make('textarea', 'free_icons_bullets', 'Free Icons Bullets')
+		Field::make('rich_text', 'free_icons_bullets', 'Free Icons Bullets')
 			->set_rows(4),
 	))
 	->add_tab('Popular Tags', array(

@@ -177,31 +177,7 @@ if (!function_exists('i3d_get_bullets')) :
 	function i3d_get_bullets($bullets)
 	{ ?>
 		<?php foreach ($bullets as $bullet) : ?>
-			<div class="card__item">
-				<?php if (str_contains($bullet, '-green-')) : ?>
-					<div class="card__item-icon card__item-icon_green">
-						<svg class="icon icon-check" viewBox="0 0 16 16">
-							<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#check"></use>
-						</svg>
-					</div>
-				<?php elseif (str_contains($bullet, '-red-')) : ?>
-					<div class="card__item-icon card__item-icon_red">
-						<svg class="icon icon-attention" viewBox="0 0 16 16">
-							<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#attention"></use>
-						</svg>
-					</div>
-				<?php else : ?>
-					<div class="card__item-icon card__item-icon_blue">
-						<svg class="icon icon-check" viewBox="0 0 16 16">
-							<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#check"></use>
-						</svg>
-					</div>
-				<?php endif; ?>
-
-				<div class="card__item-text">
-					<?php echo preg_replace(array('/\-green\-/', '/\-red\-/'), '', $bullet); ?>
-				</div>
-			</div>
+			<?php echo do_shortcode($bullet); ?>
 	<?php endforeach;
 	}
 endif;
