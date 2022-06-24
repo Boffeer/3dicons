@@ -100,76 +100,16 @@
 					<h2 class="recommend-list__title h3">Trending icons</h2>
 				</div>
 				<div class="recommend-list__cell recommend-list__cell_nav">
-					<a class="recommend-list__link arrow-link" href="#"><span class="arrow-link__text"> All icons</span><span class="arrow-link__icon"><svg class="icon icon-arrowRight" viewBox="0 0 24 24">
+					<a class="recommend-list__link arrow-link" href="<?php echo esc_url(get_post_type_archive_link('icon')) ?>"><span class="arrow-link__text"> All icons</span><span class="arrow-link__icon"><svg class="icon icon-arrowRight" viewBox="0 0 24 24">
 								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#arrowRight"></use>
 							</svg></span></a>
 				</div>
 			</div>
 			<div class="recommend-list__list flex">
-				<div class="recommend-list__item item-icon">
-					<div class="item-icon__nav nav-item">
-						<a class="nav-item__button nav-item__button_eye" href="/card_paid.html"><svg class="icon icon-eye" viewBox="0 0 24 24">
-								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#eye"></use>
-							</svg></a><a class="nav-item__button nav-item__button_basket" href="#"><svg class="icon icon-basket" viewBox="0 0 24 22">
-								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#basket"></use>
-							</svg></a>
-					</div>
-					<div class="item-icon__preview">
-						<picture>
-							<source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/item-icon-1.webp" />
-							<img src="<?php echo get_stylesheet_directory_uri(); ?>/app/img/item-icon-1.png" class="item-icon__icon" alt="" role="presentation" />
-						</picture>
-					</div>
-					<div class="item-icon__name small">Instagram</div>
-				</div>
-				<div class="recommend-list__item item-icon">
-					<div class="item-icon__nav nav-item">
-						<a class="nav-item__button nav-item__button_eye" href="/card_paid.html"><svg class="icon icon-eye" viewBox="0 0 24 24">
-								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#eye"></use>
-							</svg></a><a class="nav-item__button nav-item__button_basket" href="#"><svg class="icon icon-basket" viewBox="0 0 24 22">
-								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#basket"></use>
-							</svg></a>
-					</div>
-					<div class="item-icon__preview">
-						<picture>
-							<source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/item-icon-2.webp" />
-							<img src="<?php echo get_stylesheet_directory_uri(); ?>/app/img/item-icon-2.png" class="item-icon__icon" alt="" role="presentation" />
-						</picture>
-					</div>
-					<div class="item-icon__name small">Bitcoin</div>
-				</div>
-				<div class="recommend-list__item item-icon">
-					<div class="item-icon__nav nav-item">
-						<a class="nav-item__button nav-item__button_eye" href="/card_paid.html"><svg class="icon icon-eye" viewBox="0 0 24 24">
-								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#eye"></use>
-							</svg></a><a class="nav-item__button nav-item__button_basket" href="#"><svg class="icon icon-basket" viewBox="0 0 24 22">
-								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#basket"></use>
-							</svg></a>
-					</div>
-					<div class="item-icon__preview">
-						<picture>
-							<source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/item-icon-3.webp" />
-							<img src="<?php echo get_stylesheet_directory_uri(); ?>/app/img/item-icon-3.png" class="item-icon__icon" alt="" role="presentation" />
-						</picture>
-					</div>
-					<div class="item-icon__name small">Dashboard</div>
-				</div>
-				<div class="recommend-list__item item-icon">
-					<div class="item-icon__nav nav-item">
-						<a class="nav-item__button nav-item__button_eye" href="/card_paid.html"><svg class="icon icon-eye" viewBox="0 0 24 24">
-								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#eye"></use>
-							</svg></a><a class="nav-item__button nav-item__button_basket" href="#"><svg class="icon icon-basket" viewBox="0 0 24 22">
-								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#basket"></use>
-							</svg></a>
-					</div>
-					<div class="item-icon__preview">
-						<picture>
-							<source type="image/webp" srcset="<?php echo get_stylesheet_directory_uri(); ?>/app/img/item-icon-4.webp" />
-							<img src="<?php echo get_stylesheet_directory_uri(); ?>/app/img/item-icon-4.png" class="item-icon__icon" alt="" role="presentation" />
-						</picture>
-					</div>
-					<div class="item-icon__name small">Comment</div>
-				</div>
+				<?php
+				$trending_icons = carbon_get_theme_option('trending_icons');
+				i3d_the_crb_posts($trending_icons);
+				?>
 			</div>
 		</div>
 	</section>
