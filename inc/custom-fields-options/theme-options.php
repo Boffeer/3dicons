@@ -19,18 +19,10 @@ $basic_options_container = Container::make('theme_options', 'i3d_theme_settings'
 			->set_width(50),
 		Field::make('text', 'icons_price', 'Icons Price')
 			->set_width(30),
-		Field::make('text', 'packs_price', 'Packs Price')
-			->set_width(30),
 		Field::make('text', 'currency_price', 'Currency')
 			->set_width(30),
-		Field::make('complex', 'lead_emails', 'Lead emails')
-			->setup_labels(array(
-				'plural_name' => 'Emails',
-				'singular_name' => 'Email'
-			))
-			->add_fields(array(
-				Field::make('text', 'lead_email', 'Lead Email')
-			))
+		Field::make('textarea', 'product_thumbs_captions', 'Product Thumbs Captions'),
+		Field::make('textarea', 'lead_emails', 'Lead emails')
 	))
 	->add_tab('Icons Bullets', array(
 		Field::make('rich_text', 'premium_icons_bullets', 'Premium Icons Bullets')
@@ -85,7 +77,7 @@ Container::make('post_meta', 'product_info', 'Product Info')
 				'free' => 'Free',
 				'premium' =>  'Premium',
 			)),
-		Field::make('complex', 'thumbs', 'Thumbnails')
+		Field::make('media_gallery', 'thumbs', 'Thumbnails')
 			->set_conditional_logic(array(
 				'relation' => 'AND',
 				array(
@@ -94,36 +86,7 @@ Container::make('post_meta', 'product_info', 'Product Info')
 					'value' => 'premium',
 				)
 			))
-			->setup_labels(array(
-				'plural_name' => 'Thumbnails',
-				'singular_name' => 'Thumbnail'
-			))
-			->add_fields(array(
-				Field::make('image', 'image', 'Image')
-					->set_width(50),
-				Field::make('text', 'name', 'Name')
-					->set_width(50),
-			))
-			->set_default_value(array(
-				array(
-					'name' => 'Perspective / Matte',
-				),
-				array(
-					'name' => 'Perspective / Glossy',
-				),
-				array(
-					'name' => 'Isometric / Matte',
-				),
-				array(
-					'name' => 'Isometric / Glossy',
-				),
-				array(
-					'name' => 'Front / Matte',
-				),
-				array(
-					'name' => 'Front / Glossy',
-				),
-			)),
+			->set_type(array('image')),
 	));
 
 

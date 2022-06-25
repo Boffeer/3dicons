@@ -9,19 +9,15 @@ $icon = array(
 	'currency' => carbon_get_theme_option('currency_price'),
 	'price' => carbon_get_theme_option('icons_price'),
 	'thumbs' => carbon_get_the_post_meta('thumbs'),
+	'captions' => i3d_explode_textarea(carbon_get_theme_option('product_thumbs_captions')),
 );
+$icon['max_thumbs'] = count($icon['captions']);
 
 if ($icon['pay_status'] == 'premium') {
 	$icon['premium_bullets'] = i3d_explode_textarea(carbon_get_theme_option('premium_icons_bullets'));
 }
-
 ?>
-<?php
-// echo '<pre>';
-// var_dump(wp_get_attachment_image_src(get_post_thumbnail_id(get_the_id())));
-// echo '</pre>';
 
-?>
 <div class="container">
 	<section class="card">
 		<div class="card__wrap wrap">
@@ -41,22 +37,24 @@ if ($icon['pay_status'] == 'premium') {
 									</picture>
 								</div>
 								<div class="card__caption color-gray h6">
-									Perspective / Matte
+									<?php echo $icon['captions'][0]; ?>
 								</div>
 							</div>
 							<?php if ($icon['thumbs'] && $icon['pay_status'] == 'premium') : ?>
-								<?php foreach ($icon['thumbs'] as $thumb) : ?>
-									<div class="card__slide js-slide">
-										<div class="card__img">
-											<picture>
-												<source type="image/webp" srcset="<?php echo i3d_watermarked_url_by_id($thumb['image']); ?>.webp" />
-												<img src="<?php echo i3d_watermarked_url_by_id($thumb['image']); ?>" />
-											</picture>
+								<?php foreach ($icon['thumbs'] as $key => $thumb) : ?>
+									<?php if ($key + 1 < $icon['max_thumbs']) : ?>
+										<div class="card__slide js-slide">
+											<div class="card__img">
+												<picture>
+													<source type="image/webp" srcset="<?php echo i3d_watermarked_url_by_id($thumb); ?>.webp" />
+													<img src="<?php echo i3d_watermarked_url_by_id($thumb); ?>" />
+												</picture>
+											</div>
+											<div class="card__caption color-gray h6">
+												<?php echo $icon['captions'][$key + 1]; ?>
+											</div>
 										</div>
-										<div class="card__caption color-gray h6">
-											<?php echo $thumb['name'] ?>
-										</div>
-									</div>
+									<?php endif; ?>
 								<?php endforeach; ?>
 							<?php endif; ?>
 						</div>
@@ -68,13 +66,15 @@ if ($icon['pay_status'] == 'premium') {
 										<img src="<?php echo esc_url((wp_get_attachment_image_src(get_post_thumbnail_id(get_the_id()), 'thumbnail')[0])) ?>" />
 									</picture>
 								</div>
-								<?php foreach ($icon['thumbs'] as $thumb) : ?>
-									<div class="card__preview js-preview">
-										<picture>
-											<source type="image/webp" srcset="<?php echo esc_url((wp_get_attachment_image_src($thumb['image'], 'thumbnail')[0])) ?>.webp" />
-											<img src="<?php echo esc_url((wp_get_attachment_image_src($thumb['image'], 'thumbnail')[0])) ?>" />
-										</picture>
-									</div>
+								<?php foreach ($icon['thumbs'] as $key => $thumb) : ?>
+									<?php if ($key + 1 < $icon['max_thumbs']) : ?>
+										<div class="card__preview js-preview">
+											<picture>
+												<source type="image/webp" srcset="<?php echo esc_url((wp_get_attachment_image_src($thumb, 'thumbnail')[0])) ?>.webp" />
+												<img src="<?php echo esc_url((wp_get_attachment_image_src($thumb, 'thumbnail')[0])) ?>" />
+											</picture>
+										</div>
+									<?php endif; ?>
 								<?php endforeach; ?>
 							</div>
 						<?php endif; ?>
