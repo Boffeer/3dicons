@@ -5,7 +5,7 @@ $page_id = get_the_ID();
 $icon = array(
 	'id' => carbon_get_the_post_meta('product_id'),
 	'pay_status' => carbon_get_the_post_meta('pay_status'),
-	'free_bullets' => i3d_explode_textarea(carbon_get_theme_option('free_icons_bullets')),
+	'free_bullets' => i3d_explode_tinymc(carbon_get_theme_option('free_icons_bullets')),
 	'currency' => carbon_get_theme_option('currency_price'),
 	'price' => carbon_get_theme_option('icons_price'),
 	'thumbs' => carbon_get_the_post_meta('thumbs'),
@@ -14,9 +14,10 @@ $icon = array(
 $icon['max_thumbs'] = count($icon['captions']);
 
 if ($icon['pay_status'] == 'premium') {
-	$icon['premium_bullets'] = i3d_explode_textarea(carbon_get_theme_option('premium_icons_bullets'));
+	$icon['premium_bullets'] = i3d_explode_tinymc(carbon_get_theme_option('premium_icons_bullets'));
 }
 
+$free_bullets = carbon_get_theme_option('free_icons_bullets');
 ?>
 
 <div class="container">

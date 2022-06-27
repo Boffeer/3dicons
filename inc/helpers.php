@@ -1,8 +1,19 @@
 <?php
 
+if (!function_exists('i3d_explode_tinymc')) :
+	/**
+	 * All Enter transform to new bullet
+	 * All Shift + Enter transform to <br> of bullet
+	 */
+	function i3d_explode_tinymc($input)
+	{
+		$shift_enter = explode("\r\n\r\n", $input);
+		return array_map('nl2br', $shift_enter);
+	}
+endif;
 if (!function_exists('i3d_explode_textarea')) :
 	/**
-	 * Prints product page bullets
+	 * Transform textarea saved as string to array where every new line is a item of the array
 	 */
 	function i3d_explode_textarea($input)
 	{
@@ -12,7 +23,8 @@ endif;
 
 if (!function_exists('i3d_get_word_form')) :
 	/**
-	 * Prints product page bullets
+	 * Returns a correct form of the word
+	 * 1 Item, but 5 Items
 	 */
 	function i3d_get_word_form($count, $words)
 	{
