@@ -16,6 +16,10 @@ $icon['max_thumbs'] = count($icon['captions']);
 if ($icon['pay_status'] == 'premium') {
 	$icon['premium_bullets'] = i3d_explode_textarea(carbon_get_theme_option('premium_icons_bullets'));
 }
+
+// echo '<pre>';
+// var_dump();
+// echo '</pre>';
 ?>
 
 <div class="container">
@@ -99,7 +103,7 @@ if ($icon['pay_status'] == 'premium') {
 							<div class="card__list">
 								<?php i3d_get_bullets($icon['free_bullets']); ?>
 							</div>
-							<a class="card__btn btn btn_border js-show-popup" href="#cart"><span class="btn__text">Free download</span></a>
+							<a class="card__btn btn btn_border js-show-popup" href="<?php echo get_the_post_thumbnail_url(get_the_id(), 'thumbnail'); ?>" download=""><span class="btn__text">Free download</span></a>
 						</div>
 					</div>
 				</div>
