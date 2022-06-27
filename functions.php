@@ -208,3 +208,25 @@ function ast_register_custom_fields()
  * Helpers
  */
 require get_template_directory() . '/inc/helpers.php';
+
+add_action('admin_menu', 'remove_admin_menus');
+function remove_admin_menus()
+{
+	global $menu;
+
+	$unset_titles = [
+		__('Posts'),
+		__('Comments'),
+	];
+
+	end($menu);
+	while (prev($menu)) {
+
+		$value = explode(' ', $menu[key($menu)][0]);
+		$title = $value[0] ?: '';
+
+		if (in_array($title, $unset_titles, true)) {
+			unset($menu[key($menu)]);
+		}
+	}
+}

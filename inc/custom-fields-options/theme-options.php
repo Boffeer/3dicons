@@ -9,14 +9,6 @@ use Carbon_Fields\Field;
 // Default options page
 $basic_options_container = Container::make('theme_options', 'i3d_theme_settings',  'Content edit')
 	->add_tab('Links', array(
-		Field::make('text', 'email', 'Email')
-			->set_width(50),
-		Field::make('text', 'phone', 'Phone')
-			->set_width(50),
-		Field::make('text', 'privacy_url', 'Privacy Url')
-			->set_width(50),
-		Field::make('text', 'license_url', 'License Url')
-			->set_width(50),
 		Field::make('text', 'icons_price', 'Icons Price')
 			->set_width(30),
 		Field::make('text', 'currency_price', 'Currency')
