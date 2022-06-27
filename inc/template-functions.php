@@ -46,8 +46,9 @@ add_action('wp_head', 'i3d_pingback_header');
 add_filter('get_search_form', 'i3d_search_form');
 function i3d_search_form($form)
 {
-	$form = i3d_search_start();
-	$form .= i3d_get_search_tags(42);
+	$max_tags_to_show = 12;
+	$form = i3d_search_block_start();
+	$form .= i3d_get_search_tags($max_tags_to_show);
 	$form .= '</form>';
 	return $form;
 }
@@ -221,6 +222,11 @@ function i3d_render_related_by_tag_packs($id)
 
 
 // #region watermark
+/**
+ * - [ ] Получи все картинки, которые появляются на серве при загрузке
+ * - [ ] Сделай так, чтобы вотермарка ставилась на ресайзнутую 264 картинку
+ */
+
 add_filter('wp_generate_attachment_metadata', 'water_mark', 10, 2);
 // https://stackoverflow.com/questions/12388796/adding-watermarking-to-wordpress-function-php
 function water_mark($meta, $id)
@@ -293,12 +299,12 @@ function water_mark($meta, $id)
 	return $meta;
 }
 
-function i3d_get_thumb($id)
+function i3d_get_thumb($id, $size = 'medium')
 {
 	if ($id == get_the_ID()) {
 		return wp_get_attachment_image_src(get_post_thumbnail_id($id), 'medium');
 	} else {
-		return wp_get_attachment_image_src($id, 'medium');
+		return wp_get_attachment_image_src($id, $size);
 	}
 }
 function i3d_watermarked_url($url, $sizes)
