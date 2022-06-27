@@ -26,10 +26,14 @@ if (!function_exists('i3d_get_bullets')) :
 	 * Prints product page bullets
 	 */
 	function i3d_get_bullets($bullets)
-	{ ?>
+	{
+		ob_start(); ?>
 		<?php foreach ($bullets as $bullet) : ?>
-			<?php echo do_shortcode($bullet); ?>
+			<div class="card__item">
+				<?php echo do_shortcode($bullet) . '</span>'; /* Closing tag to bullet content */ ?>
+			</div>
 	<?php endforeach;
+		return ob_get_clean();
 	}
 endif;
 

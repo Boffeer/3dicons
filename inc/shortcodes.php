@@ -58,32 +58,29 @@ function i3d_insert_bullet($attr, $content)
 {
 	ob_start();
 ?>
-	<div class="card__item">
-		<?php
-		if (isset($attr['color'])) :
-			if ($attr['color'] == 'green') : ?>
-				<div class="card__item-icon card__item-icon_green">
-					<svg class="icon icon-check" viewBox="0 0 16 16">
-						<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#check"></use>
-					</svg>
-				</div>
-			<?php elseif ($attr['color'] == 'red') : ?>
-				<div class="card__item-icon card__item-icon_red">
-					<svg class="icon icon-attention" viewBox="0 0 16 16">
-						<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#attention"></use>
-					</svg>
-				</div>
-			<?php endif; ?>
-		<?php else :  ?>
-			<div class="card__item-icon card__item-icon_blue">
+	<?php
+	if (isset($attr['color'])) :
+		if ($attr['color'] == 'green') : ?>
+			<div class="card__item-icon card__item-icon_green">
 				<svg class="icon icon-check" viewBox="0 0 16 16">
 					<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#check"></use>
 				</svg>
 			</div>
+		<?php elseif ($attr['color'] == 'red') : ?>
+			<div class="card__item-icon card__item-icon_red">
+				<svg class="icon icon-attention" viewBox="0 0 16 16">
+					<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#attention"></use>
+				</svg>
+			</div>
 		<?php endif; ?>
-		<div class="card__item-text">
-			<?php echo do_shortcode($content); ?>
+	<?php else :  ?>
+		<div class="card__item-icon card__item-icon_blue">
+			<svg class="icon icon-check" viewBox="0 0 16 16">
+				<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#check"></use>
+			</svg>
 		</div>
-	</div>
-<?php return ob_get_clean();
+	<?php endif; ?>
+	<span class="card__item-text"> <?php /* Opening tag to bullet content */ ?>
+
+	<?php return ob_get_clean();
 }

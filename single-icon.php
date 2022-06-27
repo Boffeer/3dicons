@@ -17,9 +17,6 @@ if ($icon['pay_status'] == 'premium') {
 	$icon['premium_bullets'] = i3d_explode_textarea(carbon_get_theme_option('premium_icons_bullets'));
 }
 
-// echo '<pre>';
-// var_dump();
-// echo '</pre>';
 ?>
 
 <div class="container">
@@ -92,7 +89,7 @@ if ($icon['pay_status'] == 'premium') {
 									Premium version
 								</h3>
 								<div class="card__list">
-									<?php i3d_get_bullets($icon['premium_bullets']); ?>
+									<?php echo i3d_get_bullets($icon['premium_bullets']); ?>
 								</div>
 								<a href="https://payhip.com/b/<?php echo $icon['id']; ?>" data-product="<?php echo $icon['id']; ?>" data-theme="none" class="card__btn btn js-modal payhip-buy-button">
 									<span class="btn__text">Add to cart <?php echo $icon['currency']; ?> <?php echo $icon['price']; ?></span></a>
@@ -101,7 +98,7 @@ if ($icon['pay_status'] == 'premium') {
 						<div class="card__box">
 							<h3 class="card__box-title h5">Free version</h3>
 							<div class="card__list">
-								<?php i3d_get_bullets($icon['free_bullets']); ?>
+								<?php echo i3d_get_bullets($icon['free_bullets']); ?>
 							</div>
 							<a class="card__btn btn btn_border js-show-popup" href="<?php echo get_the_post_thumbnail_url(get_the_id(), 'thumbnail'); ?>" download=""><span class="btn__text">Free download</span></a>
 						</div>
