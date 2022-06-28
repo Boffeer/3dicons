@@ -60,8 +60,8 @@ $wp_query   = $q;
 				<?php echo get_search_form(); ?>
 				<div class="hello-screen__bottom">
 					<div class="hello-screen__switcher switcher">
-						<a href="<?php echo home_url() ?>?post_type=icons" class="switcher__link is-active">Icons</a>
-						<a href="<?php echo home_url() ?>?post_type=packs" class="switcher__link">Icon packs</a>
+						<a href="<?php echo get_home_url() ?>?post_type=icons" class="switcher__link is-active">Icons</a>
+						<a href="<?php echo get_home_url() ?>?post_type=packs" class="switcher__link">Icon packs</a>
 					</div>
 				</div>
 			</div>

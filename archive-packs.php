@@ -23,7 +23,8 @@
 				<?php echo get_search_form(); ?>
 				<div class="hello-screen__bottom">
 					<div class="hello-screen__switcher switcher">
-						<a class="switcher__link" href="<?php echo esc_url(get_post_type_archive_link('icon')); ?>">Icons</a><span class="switcher__link is-active">Icon packs</span>
+						<a href="<?php echo get_home_url() ?>?post_type=icons" class="switcher__link">Icons</a>
+						<a href="<?php echo get_home_url() ?>?post_type=packs" class="switcher__link  is-active">Icon packs</a>
 					</div>
 				</div>
 			</div>
