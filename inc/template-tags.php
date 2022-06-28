@@ -77,6 +77,32 @@ function i3d_search_block_start()
 				</button>
 			</div>
 		</div>
+		<script>
+			window.addEventListener('DOMContentLoaded', (event) => {
+				const forms = [...document.querySelectorAll('.hello-screen__search.search')];
+				if (forms.length > 0) {
+					setTimeout(() => {
+						let currentSearchType = '';
+						if (window.location.search.includes('post_type=icon&')) {
+							forms.forEach(form => {
+								const button = form.querySelector('.js-select-option[data-value="icon"]');
+								button.click()
+							})
+						} else if (window.location.search.includes('post_type=packs')) {
+							forms.forEach(form => {
+								const button = form.querySelector('.js-select-option[data-value="packs"]');
+								button.click()
+							})
+						} else {
+							forms.forEach(form => {
+								const button = form.querySelector('.js-select-option[data-value="icon+packs"]');
+								button.click()
+							})
+						}
+					}, 200)
+				}
+			});
+		</script>
 	<?php return ob_get_clean();
 }
 

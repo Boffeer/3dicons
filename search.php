@@ -17,9 +17,34 @@ function kama_fix_search_pagination($result)
 	return $result . $glue . "s={$_REQUEST['s']}";
 }
 
+// remove pages form search output
 foreach ($posts as $key => $post) {
 	if ($post->post_type === 'page') {
 		unset($posts[$key]);
+	}
+}
+
+$tags = get_tags(array(
+	'name__like' => get_search_query(),
+));
+
+// global $posts;
+if (!empty($tags)) {
+	$slugs = array();
+	foreach ($tags as $tag) {
+		$slugs[] = $tag->slug;
+	}
+	$slugs = implode(',', $slugs);
+
+	$icons = get_posts(
+		array(
+			'tag' => $slugs,
+			'post_type' => array('icon', 'packs'),
+		)
+	);
+
+	foreach ($icons as $icon) {
+		$posts[] = $icon;
 	}
 }
 ?>
@@ -39,28 +64,40 @@ foreach ($posts as $key => $post) {
 	</section>
 	<section class="icons-list">
 		<div class="icons-list__wrap wrap">
-			<?php if (have_posts() && count($posts)) : ?>
-				<div class="icons-list__row flex">
+			<div class="icons-list__row flex">
+				<?php if (!empty($posts)) : ?>
+					<?php //if (have_posts() && count($posts)) :
+					?>
 					<?php
 					/* Start the Loop */
-					while (have_posts()) {
-						the_post();
+					// while (false && have_posts()) {
+					// 	the_post();
+					// 	// echo '<pre>';
+					// 	// var_dump($post);
+					// 	// echo '</pre>';
+					// 	get_template_part('template-parts/content', $post->post_type);
+					// }
+
+					foreach ($posts as $post) {
+						setup_postdata($post);
 						get_template_part('template-parts/content', $post->post_type);
 					}
+					wp_reset_postdata($post);
 
 					?>
-				</div>
-				<?php echo i3d_custom_pagination();
-				?>
-				<?php //the_posts_navigation()
-				?>
-			<?php else : ?>
-				<?php get_template_part('template-parts/content', 'none'); ?>
-			<?php endif ?>
+			</div>
 		</div>
-	</section>
-	<?php echo do_shortcode('[trending type="packs"]'); ?>
-	<?php echo do_shortcode('[trending]'); ?>
+		<?php echo i3d_custom_pagination();
+		?>
+		<?php //the_posts_navigation()
+		?>
+	<?php else : ?>
+		<?php get_template_part('template-parts/content', 'none'); ?>
+	<?php endif ?>
+</div>
+</section>
+<?php echo do_shortcode('[trending type="packs"]'); ?>
+<?php echo do_shortcode('[trending]'); ?>
 </div>
 
 <?php
