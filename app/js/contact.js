@@ -21,31 +21,6 @@
       body["action"] = "send_contact";
       let ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
 
-      // window.location.origin + "/wp-content/themes/c21/send.php",
-      // let response = await fetch(ajaxUrl, {
-      //   method: "POST",
-      //   body: body,
-      // });
-      // let result = await response.text();
-      // console.log(result);
-
-      // let response = await fetch("http://3dicons.loc/wp-admin/admin-ajax.php", {
-      //   headers: {
-      //     accept: "*/*",
-      //     "accept-language": "ru,en-US;q=0.9,en;q=0.8,fr;q=0.7",
-      //     "cache-control": "no-cache",
-      //     "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-      //     pragma: "no-cache",
-      //     "x-requested-with": "XMLHttpRequest",
-      //   },
-      //   referrer: "http://3dicons.loc/contact/",
-      //   referrerPolicy: "strict-origin-when-cross-origin",
-      //   body: body,
-      //   method: "POST",
-      //   mode: "cors",
-      //   credentials: "include",
-      // });
-
       $.ajax({
         url: ajaxUrl,
         method: "POST",
