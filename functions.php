@@ -150,17 +150,9 @@ function i3d_scripts()
 	wp_enqueue_script('jquery', get_stylesheet_directory_uri() . '/app/js/jquery-3.3.1.min.js', array(), _S_VERSION, true);
 
 	wp_enqueue_script('i3d-scripts', get_stylesheet_directory_uri() . '/app/js/app.js', array(), _S_VERSION, true);
+	wp_enqueue_script('i3d-contact', get_stylesheet_directory_uri() . '/app/js/contact.js', array(), _S_VERSION, true);
 
-	wp_enqueue_script('i3d-payhip', '//payhip.com/payhip.js', array(), _S_VERSION, false);
-
-	// wp_enqueue_style('i3d-style', get_stylesheet_uri(), array(), _S_VERSION);
-	// wp_style_add_data('i3d-style', 'rtl', 'replace');
-
-	// wp_enqueue_script('i3d-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
-
-	// if (is_singular() && comments_open() && get_option('thread_comments')) {
-	// wp_enqueue_script('comment-reply');
-	// }
+	// wp_enqueue_script('i3d-payhip', '//payhip.com/payhip.js', array(), _S_VERSION, false);
 }
 add_action('wp_enqueue_scripts', 'i3d_scripts');
 
@@ -208,6 +200,11 @@ function ast_register_custom_fields()
  * Helpers
  */
 require get_template_directory() . '/inc/helpers.php';
+
+/**
+ * Mailer
+ */
+require get_template_directory() . '/inc/mailer.php';
 
 add_action('admin_menu', 'remove_admin_menus');
 function remove_admin_menus()

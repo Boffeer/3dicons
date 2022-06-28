@@ -11,7 +11,7 @@
 						happy to chat with you.
 						<?php the_content(); ?>
 					</div>
-					<form class="contact__form form" action="<?php echo get_stylesheet_directory_uri(); ?>/app/mail/">
+					<form class="contact__form form form__contact" action="<?php echo get_stylesheet_directory_uri(); ?>/app/mail/">
 						<div class="form__field field">
 							<input class="field__input" type="text" name="name" placeholder="Your name" />
 						</div>
