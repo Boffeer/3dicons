@@ -227,3 +227,8 @@ function remove_admin_menus()
 		}
 	}
 }
+
+/**
+ * Watermark
+ */
+require get_template_directory() . '/inc/watermark.php';

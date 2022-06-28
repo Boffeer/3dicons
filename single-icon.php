@@ -17,7 +17,6 @@ if ($icon['pay_status'] == 'premium') {
 	$icon['premium_bullets'] = i3d_explode_tinymc(carbon_get_theme_option('premium_icons_bullets'));
 }
 
-$free_bullets = carbon_get_theme_option('free_icons_bullets');
 ?>
 
 <div class="container">
@@ -44,7 +43,7 @@ $free_bullets = carbon_get_theme_option('free_icons_bullets');
 							</div>
 							<?php if ($icon['thumbs'] && $icon['pay_status'] == 'premium') : ?>
 								<?php foreach ($icon['thumbs'] as $key => $thumb) : ?>
-									<?php if ($key + 1 < $icon['max_thumbs']) : ?>
+									<?php if ($key + 1 < $icon['max_thumbs'] && $thumb) : ?>
 										<div class="card__slide js-slide">
 											<div class="card__img">
 												<picture>
@@ -69,7 +68,7 @@ $free_bullets = carbon_get_theme_option('free_icons_bullets');
 									</picture>
 								</div>
 								<?php foreach ($icon['thumbs'] as $key => $thumb) : ?>
-									<?php if ($key + 1 < $icon['max_thumbs']) : ?>
+									<?php if ($key + 1 < $icon['max_thumbs'] && $thumb) : ?>
 										<div class="card__preview js-preview">
 											<picture>
 												<source type="image/webp" srcset="<?php echo esc_url((wp_get_attachment_image_src($thumb, 'thumbnail')[0])) ?>.webp" />
