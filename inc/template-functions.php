@@ -120,11 +120,14 @@ function i3d_no_results_popular_tags($count = 42)
 	$tags = i3d_get_search_meter($count);
 	$search  = [
 		'<ul>',
+		'</ul>',
 		'<li>',
 		'<a href',
 	];
 	$replace = [
-		'<ul class="popular-keywords__list flex">',
+		// '<ul class="popular-keywords__list flex">',
+		'',
+		'',
 		'<li class="popular-keywords__item">',
 		'<a class="popular-keywords__link" href',
 	];

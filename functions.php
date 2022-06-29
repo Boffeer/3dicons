@@ -47,6 +47,7 @@ function i3d_setup()
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
 	add_theme_support('post-thumbnails');
+	set_post_thumbnail_size(264, 264);
 
 	// add_image_size('i3d_thumb', 128, 128, true);
 	// add_image_size('i3d_medium', 264, 264, true);

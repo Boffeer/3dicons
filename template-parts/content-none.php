@@ -11,8 +11,6 @@
 ?>
 
 
-<!-- <div class="container"> -->
-<!-- <section class="search-result"> -->
 <div class="search-result__wrap wrap">
 	<?php if (is_search()) :
 	?>
@@ -30,7 +28,5 @@
 <section class="popular-keywords">
 	<div class="popular-keywords__wrap wrap">
 		<h2 class="popular-keywords__title h3">Popular keywords</h2>
-		<?php echo i3d_no_results_popular_tags(); ?>
+		<?php echo i3d_get_no_result_search_tags(42); ?>
 	</div>
-	<!-- </section> -->
-	<!-- </div> -->

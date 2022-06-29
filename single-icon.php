@@ -118,7 +118,7 @@ if ($icon['pay_status'] == 'premium') {
 						<h2 class="recommend-list__title h3">Related icon packs</h2>
 					</div>
 					<div class="recommend-list__cell recommend-list__cell_nav">
-						<a class="recommend-list__link arrow-link" href="<?php echo esc_url(get_post_type_archive_link('packs')) ?>"><span class="arrow-link__text"> All icon packs</span><span class="arrow-link__icon"><svg class="icon icon-arrowRight" viewBox="0 0 24 24">
+						<a class="recommend-list__link arrow-link" href="<?php echo home_url('/?post_type=packs') ?>"><span class="arrow-link__text"> All icon packs</span><span class="arrow-link__icon"><svg class="icon icon-arrowRight" viewBox="0 0 24 24">
 									<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#arrowRight"></use>
 								</svg></span></a>
 					</div>

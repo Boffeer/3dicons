@@ -118,3 +118,28 @@ function i3d_get_search_tags($max)
 		</div>
 	<?php return ob_get_clean();
 }
+
+function i3d_get_no_result_search_tags($max)
+{
+	$popular_tags = carbon_get_theme_option('popular_tags');
+	ob_start();
+
+	$tags = array();
+	foreach ($popular_tags as $count => $tag) {
+		if ($count > $max - 1) return;
+		$tags[] = get_tag($tag['id']);
+	}
+	?>
+		<ul class="popular-keywords__list flex">
+			<?php foreach ($tags as $key => $tag) : ?>
+				<li class="popular-keywords__item">
+					<a class="popular-keywords__link" href="<?php echo get_tag_link($tag->term_id) ?>"><?php echo $tag->name; ?></a>
+				</li>
+			<?php endforeach; ?>
+			<?php
+			$popular_tags = (int)$max - (int)count($tags);
+			echo i3d_no_results_popular_tags($popular_tags);
+			?>
+		</ul>
+	<?php return ob_get_clean();
+}
