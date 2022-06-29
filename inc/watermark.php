@@ -1,5 +1,10 @@
 <?php
 
+add_filter('big_image_size_threshold', function () {
+	return 1600;
+});
+add_filter('big_image_size_threshold', '__return_zero');
+
 add_filter('intermediate_image_sizes_advanced', 'i3d_remove_default_sizes');
 
 function i3d_remove_default_sizes($sizes)
@@ -11,6 +16,7 @@ function i3d_remove_default_sizes($sizes)
 	unset($sizes['1536x1536']);
 	unset($sizes['2048x2048']);
 	unset($sizes['scaled']);
+	unset($sizes['fullsize']);
 	return $sizes;
 }
 
@@ -70,22 +76,6 @@ function water_mark($meta, $id)
 	// imagecopy($image, $watermark, $orig_w - ($wm_w- 9), $orig_h - ($wm_h- 9), 0, 0, $orig_w, $orig_h, $wm_w, $wm_h);
 
 	imagecopyresized($image, $watermark, ($wm_h - $orig_h) / 2, ($wm_w - $orig_w) / 2, 0, 0, $orig_h, $orig_h, $wm_h, $wm_h);
-	// echo '<pre>';
-	// var_dump(array(
-	// 	'original' => array(
-	// 		'w' => $orig_w,
-	// 		'h' => $orig_h,
-	// 	),
-	// 	'wm' => array(
-	// 		'w' => $wm_w,
-	// 		'h' => $wm_h,
-	// 	),
-	// 	'gaps' => array(
-	// 		'w' => ($wm_w - $orig_w) / 2,
-	// 		'h' => ($wm_h - $orig_h) / 2,
-	// 	)
-	// ));
-	// echo '</pre>';
 
 
 
