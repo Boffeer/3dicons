@@ -38,6 +38,11 @@
 			?>>
 	<?php wp_body_open(); ?>
 
+	<script type="text/javascript">
+		var PayhipConfig = {
+			enableCart: true
+		};
+	</script>
 	<main>
 		<header class="header">
 			<div class="header__wrap wrap wrap_big">

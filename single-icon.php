@@ -91,7 +91,7 @@ if ($icon['pay_status'] == 'premium') {
 								<div class="card__list">
 									<?php echo i3d_get_bullets($icon['premium_bullets']); ?>
 								</div>
-								<a href="https://payhip.com/b/<?php echo $icon['id']; ?>" data-product="<?php echo $icon['id']; ?>" data-theme="none" class="card__btn btn js-modal payhip-buy-button">
+								<a href="https://payhip.com/b/<?php echo $icon['id']; ?>" data-product="<?php echo $icon['id']; ?>" data-theme="none" class="card__btn btn js-modal payhip-add-to-cart-button">
 									<span class="btn__text">Add to cart <?php echo $icon['currency']; ?> <?php echo $icon['price']; ?></span></a>
 							</div>
 						<?php endif; ?>

@@ -18,7 +18,7 @@ function send_contact_form()
 
 	$post_data = $_POST;
 	foreach ($post_data as $key => $post) {
-		if ($post != $_POST['formname'] && $post != $_POST['name'] && $post != $_POST['tel'] && $post != $_POST['action']) {
+		if ($post != $_POST['formname'] && $post != $_POST['email'] && $post != $_POST['name'] && $post != $_POST['tel'] && $post != $_POST['action']) {
 			$message_body .= $key . ": $post<br/><br/>";
 		}
 	}

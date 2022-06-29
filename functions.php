@@ -48,6 +48,9 @@ function i3d_setup()
 		*/
 	add_theme_support('post-thumbnails');
 
+	// add_image_size('i3d_thumb', 128, 128, true);
+	// add_image_size('i3d_medium', 264, 264, true);
+
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
@@ -231,4 +234,4 @@ function remove_admin_menus()
 /**
  * Watermark
  */
-require get_template_directory() . '/inc/watermark.php';
+require_once get_template_directory() . '/inc/watermark.php';
