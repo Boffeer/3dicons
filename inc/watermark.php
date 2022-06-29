@@ -4,8 +4,8 @@ add_filter('intermediate_image_sizes_advanced', 'i3d_remove_default_sizes');
 
 function i3d_remove_default_sizes($sizes)
 {
-	// unset( $sizes[ 'thumbnail' ] ); // миниатюра
-	// unset( $sizes[ 'medium' ] ); // средний
+	// unset($sizes['thumbnail']); // миниатюра
+	// unset($sizes['medium']); // средний
 	unset($sizes['large']); // крупный
 	unset($sizes['medium_large']); // с шириной 768
 	unset($sizes['1536x1536']);
@@ -32,6 +32,10 @@ function water_mark($meta, $id)
 	$upload_path = wp_upload_dir();
 	$path = $upload_path['basedir'];
 
+	// echo '<pre>';
+	// var_dump($meta);
+	// echo '</pre>';
+
 	//handle the different media upload directory structures
 	if (isset($path)) {
 		$file = trailingslashit($upload_path['basedir'] . $upload_path['subdir'] . '/') . $meta['sizes']['medium']['file'];
@@ -39,9 +43,9 @@ function water_mark($meta, $id)
 		$water_path = wp_upload_dir()['baseurl'] . '/watermarks/' . mt_rand(1, 3)  . '-' . mt_rand(1, 3) . '.png';
 	} else {
 		$file = trailingslashit($upload_path['basedir'] . $upload_path['subdir'] . '/') . $meta['sizes']['medium']['file'];
+		$water_path = wp_upload_dir()['baseurl'] . '/watermarks/' . mt_rand(1, 3)  . '-' . mt_rand(1, 3) . '.png';
 		// $file = trailingslashit($upload_path['path']) . $meta['file'];
 		// $water_path = trailingslashit($upload_path['path']) . 'watermarks/2-2.png';
-		$water_path = wp_upload_dir()['baseurl'] . '/watermarks/' . mt_rand(1, 3)  . '-' . mt_rand(1, 3) . '.png';
 	}
 
 	//list original image dimensions
@@ -49,7 +53,7 @@ function water_mark($meta, $id)
 
 	//load watermark - list its dimensions
 	$watermark = imagecreatefrompng($water_path);
-	list($wm_width, $wm_height, $wm_type) = @getimagesize($water_path);
+	list($wm_w, $wm_h, $wm_type) = @getimagesize($water_path);
 
 	//if your watermark is a transparent png uncomment below
 	imagealphablending($watermark, 1);
@@ -67,18 +71,23 @@ function water_mark($meta, $id)
 
 	//create merged copy
 	//if your watermark is a transparent png uncomment below
-	// imagecopyresampled($image, $watermark, $orig_w - ($wm_width - 9), $orig_h - ($wm_height - 9), 0, 0, $orig_w, $orig_h, $wm_width, $wm_height);
-	// imagecopy($image, $watermark, $orig_w - ($wm_width - 9), $orig_h - ($wm_height - 9), 0, 0, $orig_w, $orig_h, $wm_width, $wm_height);
-	imagecopyresized($image, $watermark, 0, 0, 0, 0, 264, 264, 264, 264);
+	// imagecopyresampled($image, $watermark, $orig_w - ($wm_w- 9), $orig_h - ($wm_h- 9), 0, 0, $orig_w, $orig_h, $wm_w, $wm_h);
+	// imagecopy($image, $watermark, $orig_w - ($wm_w- 9), $orig_h - ($wm_h- 9), 0, 0, $orig_w, $orig_h, $wm_w, $wm_h);
+
+	imagecopyresized($image, $watermark, 0, 0, 0, 0, $orig_h, $orig_h, $wm_h, $wm_h);
+
+
+
+
 	// imagecopyresampled($image, $watermark, 0, 0, 0, 0, $orig_w, $orig_h, $orig_w, $orig_h);
 
 
 	// Другими словами, imagecopyresampled() берет прямоугольный участок из $watermark с шириной src_width и высотой src_height на координатах src_x,src_y и помещает его в прямоугольный участок изображения dst_image шириной dst_width и высотой dst_height на координатах dst_x,dst_y.
 
-	// imagecopy// ($image, $watermark, $orig_w - ($wm_width - 9), $orig_h - ($wm_height - 9), 0, 0, $wm_width, $wm_height);
+	// imagecopy// ($image, $watermark, $orig_w - ($wm_w- 9), $orig_h - ($wm_h- 9), 0, 0, $wm_w, $wm_h);
 
 	//if your watermark is a transparent png comment out below
-	// imagecopymerge($image, $watermark, $orig_w - ($wm_width + 10), $orig_h - ($wm_height + 10), 0, 0, $wm_width, $wm_height, 70);
+	// imagecopymerge($image, $watermark, $orig_w - ($wm_w+ 10), $orig_h - ($wm_h+ 10), 0, 0, $wm_w, $wm_h, 70);
 
 	//save image backout
 	switch ($orig_type) {
