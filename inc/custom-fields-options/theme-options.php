@@ -50,15 +50,6 @@ $basic_options_container = Container::make('theme_options', 'i3d_theme_settings'
 			))
 	));
 
-Container::make('post_meta', 'page_info', 'Page Info')
-	->where('post_type', '=', 'page')
-	->add_tab('Page settings', array(
-		Field::make('text', 'page_title', 'Page title'),
-		Field::make('textarea', 'page_description', 'Page description'),
-		Field::make('image', 'og_image', 'og:image')
-			->set_value_type('url'),
-	));
-
 Container::make('post_meta', 'product_info', 'Product Info')
 	->where('post_type', '=', 'icon')
 	->add_tab('Product settings', array(

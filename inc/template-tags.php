@@ -45,9 +45,24 @@ function i3d_search_block_start()
 		<div class="search__row">
 			<div class="search__cell search__cell_nav">
 				<div class="search__select js-select select">
-					<input class="select__input js-select-input" type="hidden" name="post_type" value="icon+packs" />
+
+
+					<?php
+					$search_post_type = array();
+					if (get_query_var('post_type') == 'icon') {
+						$search_post_type['text'] = 'Icons';
+						$search_post_type['value'] = 'icon';
+					} else if (get_query_var('post_type') == 'packs') {
+						$search_post_type['text'] = 'Icon packs';
+						$search_post_type['value'] = 'packs';
+					} else {
+						$search_post_type['text'] = 'All assets';
+						$search_post_type['value'] = 'icon+packs';
+					}
+					?>
+					<input class="select__input js-select-input" type="hidden" name="post_type" value="<?php echo $search_post_type['value']; ?>" />
 					<div class="select__header js-select-head">
-						<div class="select__name js-select-label">All assets</div>
+						<div class="select__name js-select-label"><?php echo $search_post_type['text']; ?></div>
 						<div class="select__arrow">
 							<svg class="icon icon-arrow" viewBox="0 0 12 12">
 								<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#arrow"></use>
@@ -77,32 +92,6 @@ function i3d_search_block_start()
 				</button>
 			</div>
 		</div>
-		<script>
-			window.addEventListener('DOMContentLoaded', (event) => {
-				const forms = [...document.querySelectorAll('.hello-screen__search.search')];
-				if (forms.length > 0) {
-					setTimeout(() => {
-						let currentSearchType = '';
-						if (window.location.search.includes('post_type=icon&')) {
-							forms.forEach(form => {
-								const button = form.querySelector('.js-select-option[data-value="icon"]');
-								button.click()
-							})
-						} else if (window.location.search.includes('post_type=packs')) {
-							forms.forEach(form => {
-								const button = form.querySelector('.js-select-option[data-value="packs"]');
-								button.click()
-							})
-						} else {
-							forms.forEach(form => {
-								const button = form.querySelector('.js-select-option[data-value="icon+packs"]');
-								button.click()
-							})
-						}
-					}, 200)
-				}
-			});
-		</script>
 	<?php return ob_get_clean();
 }
 
