@@ -10,6 +10,7 @@ function i3d_remove_default_sizes($sizes)
 	unset($sizes['medium_large']); // с шириной 768
 	unset($sizes['1536x1536']);
 	unset($sizes['2048x2048']);
+	unset($sizes['scaled']);
 	return $sizes;
 }
 
@@ -32,10 +33,6 @@ function water_mark($meta, $id)
 	$upload_path = wp_upload_dir();
 	$path = $upload_path['basedir'];
 
-	// echo '<pre>';
-	// var_dump($meta);
-	// echo '</pre>';
-
 	//handle the different media upload directory structures
 	if (isset($path)) {
 		$file = trailingslashit($upload_path['basedir'] . $upload_path['subdir'] . '/') . $meta['sizes']['medium']['file'];
@@ -44,8 +41,6 @@ function water_mark($meta, $id)
 	} else {
 		$file = trailingslashit($upload_path['basedir'] . $upload_path['subdir'] . '/') . $meta['sizes']['medium']['file'];
 		$water_path = wp_upload_dir()['baseurl'] . '/watermarks/' . mt_rand(1, 3)  . '-' . mt_rand(1, 3) . '.png';
-		// $file = trailingslashit($upload_path['path']) . $meta['file'];
-		// $water_path = trailingslashit($upload_path['path']) . 'watermarks/2-2.png';
 	}
 
 	//list original image dimensions
@@ -74,7 +69,23 @@ function water_mark($meta, $id)
 	// imagecopyresampled($image, $watermark, $orig_w - ($wm_w- 9), $orig_h - ($wm_h- 9), 0, 0, $orig_w, $orig_h, $wm_w, $wm_h);
 	// imagecopy($image, $watermark, $orig_w - ($wm_w- 9), $orig_h - ($wm_h- 9), 0, 0, $orig_w, $orig_h, $wm_w, $wm_h);
 
-	imagecopyresized($image, $watermark, 0, 0, 0, 0, $orig_h, $orig_h, $wm_h, $wm_h);
+	imagecopyresized($image, $watermark, ($wm_h - $orig_h) / 2, ($wm_w - $orig_w) / 2, 0, 0, $orig_h, $orig_h, $wm_h, $wm_h);
+	// echo '<pre>';
+	// var_dump(array(
+	// 	'original' => array(
+	// 		'w' => $orig_w,
+	// 		'h' => $orig_h,
+	// 	),
+	// 	'wm' => array(
+	// 		'w' => $wm_w,
+	// 		'h' => $wm_h,
+	// 	),
+	// 	'gaps' => array(
+	// 		'w' => ($wm_w - $orig_w) / 2,
+	// 		'h' => ($wm_h - $orig_h) / 2,
+	// 	)
+	// ));
+	// echo '</pre>';
 
 
 
