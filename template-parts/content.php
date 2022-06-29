@@ -18,7 +18,8 @@
 		<div class="item-icon__nav nav-item">
 			<a class="nav-item__button nav-item__button_eye" href="<?php echo esc_url(the_permalink()); ?>"><svg class="icon icon-eye" viewBox="0 0 24 24">
 					<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#eye"></use>
-				</svg></a><a class="nav-item__button nav-item__button_basket payhip-add-to-cart-button" href="https://payhip.com/b/<?php echo $id; ?>" data-product="<?php echo $icon['id']; ?>" data-theme="none"><svg class="icon icon-basket" viewBox="0 0 24 22">
+				</svg></a>
+			<a class="nav-item__button nav-item__button_basket payhip-add-to-cart-button" href="https://payhip.com/b/<?php echo $id; ?>" data-product="<?php echo $id; ?>" data-theme="none"><svg class="icon icon-basket" viewBox="0 0 24 22">
 					<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#basket"></use>
 				</svg></a>
 		</div>
@@ -43,7 +44,7 @@
 		<div class="item-pack__nav nav-item">
 			<a class="nav-item__button nav-item__button_eye" href="<?php echo esc_url(get_the_permalink()); ?>"><svg class="icon icon-eye" viewBox="0 0 24 24">
 					<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#eye"></use>
-				</svg></a><a class="nav-item__button nav-item__button_basket payhip-add-to-cart-button" href="https://payhip.com/b/<?php echo $pack['id']; ?>" data-product="<?php echo $icon['id']; ?>" data-theme="none"><svg class="icon icon-basket" viewBox="0 0 24 22">
+				</svg></a><a class="nav-item__button nav-item__button_basket payhip-add-to-cart-button" href="https://payhip.com/b/<?php echo $pack['id']; ?>" data-product="<?php echo $pack['id']; ?>" data-theme="none"><svg class="icon icon-basket" viewBox="0 0 24 22">
 					<use xlink:href="<?php echo get_stylesheet_directory_uri(); ?>/app/icons/sprite.svg#basket"></use>
 				</svg></a>
 		</div>

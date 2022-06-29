@@ -23,7 +23,7 @@ $pack = array(
 					</div>
 				</div>
 				<div class="pack-head__column pack-head__column_right">
-					<a class="pack-head__btn btn js-show-popup payhip-add-to-cart-button" href="https://payhip.com/b/<?php echo $pack['id']; ?>" data-product="<?php echo $icon['id']; ?>" data-theme="none"><span class="btn__text">Add this pack to cart <?php echo $pack['currency']; ?><?php echo $pack['price']; ?></span></a>
+					<a class="pack-head__btn btn js-show-popup payhip-add-to-cart-button" href="https://payhip.com/b/<?php echo $pack['id']; ?>" data-product="<?php echo $pack['id']; ?>" data-theme="none"><span class="btn__text">Add this pack to cart <?php echo $pack['currency']; ?><?php echo $pack['price']; ?></span></a>
 				</div>
 			</div>
 		</div>
