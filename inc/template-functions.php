@@ -43,14 +43,29 @@ add_action('wp_head', 'i3d_pingback_header');
 /**
  * Change search form
  */
-add_filter('get_search_form', 'i3d_search_form');
+add_filter('get_search_form', 'i3d_search_form', 10, 2);
 function i3d_search_form($form)
 {
+	$from_variation = did_action('i3d_search_form_counter');
 	$max_tags_to_show = 12;
-	$form = i3d_search_block_start();
-	$form .= i3d_get_search_tags($max_tags_to_show);
+
+	$form = '';
+	if (!$from_variation) {
+		$form = '<form class="header__search js-without-validation search search_small" action="' . home_url('/') . '">';
+	} else {
+		$form = '<form class="hello-screen__search search js-without-validation" action="' . home_url('/') . '">';
+	}
+	$form .= i3d_search_block_start();
+	if ($from_variation) {
+		$form .= i3d_get_search_tags($max_tags_to_show);
+	}
 	$form .= '</form>';
+	do_action('i3d_search_form_counter');
 	return $form;
+}
+
+function i3d_search_form_counter()
+{
 }
 
 function i3d_get_search_meter($count)
