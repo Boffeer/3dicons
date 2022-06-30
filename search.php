@@ -36,17 +36,30 @@ if (!empty($tags)) {
 	}
 	$slugs = implode(',', $slugs);
 
-	$icons = get_posts(
-		array(
-			'tag' => $slugs,
-			'post_type' => array('icon', 'packs'),
-		)
-	);
-
-	foreach ($icons as $icon) {
-		$posts[] = $icon;
+	if ($_GET['post_type'] == 'icon' || $_GET['post_type'] === 'icon+packs') {
+		$icons = get_posts(
+			array(
+				'tag' => $slugs,
+				'post_type' => 'icon',
+			)
+		);
+		foreach ($icons as $icon) {
+			$posts[] = $icon;
+		}
+	}
+	if ($_GET['post_type'] == 'packs' || $_GET['post_type'] === 'icon+packs') {
+		$packs = get_posts(
+			array(
+				'tag' => $slugs,
+				'post_type' => 'packs',
+			)
+		);
+		foreach ($packs as $pack) {
+			$posts[] = $pack;
+		}
 	}
 }
+
 ?>
 
 <div class="container">
@@ -58,14 +71,14 @@ if (!empty($tags)) {
 				printf(esc_html__('Search results for: %s', 'i3d'), '<span class="color-blue">' . get_search_query() . '</span>');
 				?>
 			</h2>
-			<?php if (!have_posts()) : ?>
+			<?php if (!$posts) : ?>
 				<div class="search-result__text h4">
 					Sorry, nothing found ... Please try other keywords
 				</div>
 			<?php endif; ?>
 		</div>
 	</section>
-	<?php if (have_posts()) : ?>
+	<?php if ($posts) : ?>
 		<section class="icons-list">
 			<div class="icons-list__wrap wrap">
 				<div class="icons-list__row flex">
@@ -73,12 +86,8 @@ if (!empty($tags)) {
 					/* Start the Loop */
 					// while (false && have_posts()) {
 					// 	the_post();
-					// 	// echo '<pre>';
-					// 	// var_dump($post);
-					// 	// echo '</pre>';
 					// 	get_template_part('template-parts/content', $post->post_type);
 					// }
-
 					foreach ($posts as $post) {
 						setup_postdata($post);
 						get_template_part('template-parts/content', $post->post_type);

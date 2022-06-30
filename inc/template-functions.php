@@ -87,7 +87,7 @@ function i3d_custom_pagination()
 		'<a class="pagination__button pagination__button_prev"',
 		'<a class="pagination__button pagination__button_next"',
 		'<span aria-current="page" class="pagination__button is-active"',
-		'<span class="pagination__button"',
+		'<span class="pagination__button">',
 	];
 	$nav  = str_replace($search, $replace, $nav);
 	return $nav;
