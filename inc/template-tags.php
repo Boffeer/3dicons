@@ -45,14 +45,12 @@ function i3d_search_block_start()
 		<div class="search__row">
 			<div class="search__cell search__cell_nav">
 				<div class="search__select js-select select">
-
-
 					<?php
 					$search_post_type = array();
-					if (get_query_var('post_type') == 'icon') {
+					if (get_query_var('post_type') == 'icon' && get_query_var('s')) {
 						$search_post_type['text'] = 'Icons';
 						$search_post_type['value'] = 'icon';
-					} else if (get_query_var('post_type') == 'packs') {
+					} else if (get_query_var('post_type') == 'packs' && get_query_var('s')) {
 						$search_post_type['text'] = 'Icon packs';
 						$search_post_type['value'] = 'packs';
 					} else {

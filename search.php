@@ -50,24 +50,25 @@ if (!empty($tags)) {
 ?>
 
 <div class="container">
-	<?php if (have_posts() && count($posts)) : ?>
-		<section class="search-result">
-			<div class="search-result__wrap wrap">
-				<h2 class="search-result__title h3">
-					<?php
-					/* translators: %s: search query. */
-					printf(esc_html__('Search results for: %s', 'i3d'), '<span class="color-blue">' . get_search_query() . '</span>');
-					?>
-				</h2>
-			</div>
-		</section>
-	<?php endif; ?>
-	<section class="icons-list">
-		<?php if (!empty($posts)) : ?>
+	<section class="search-result">
+		<div class="search-result__wrap wrap">
+			<h2 class="search-result__title h3">
+				<?php
+				/* translators: %s: search query. */
+				printf(esc_html__('Search results for: %s', 'i3d'), '<span class="color-blue">' . get_search_query() . '</span>');
+				?>
+			</h2>
+			<?php if (!have_posts()) : ?>
+				<div class="search-result__text h4">
+					Sorry, nothing found ... Please try other keywords
+				</div>
+			<?php endif; ?>
+		</div>
+	</section>
+	<?php if (have_posts()) : ?>
+		<section class="icons-list">
 			<div class="icons-list__wrap wrap">
 				<div class="icons-list__row flex">
-					<?php //if (have_posts() && count($posts)) :
-					?>
 					<?php
 					/* Start the Loop */
 					// while (false && have_posts()) {
@@ -88,14 +89,13 @@ if (!empty($tags)) {
 				</div>
 			</div>
 			<?php echo i3d_custom_pagination(); ?>
+		</section>
+	<?php else : ?>
+		<?php get_template_part('template-parts/content', 'none'); ?>
+	<?php endif ?>
 
-		<?php else : ?>
-			<?php get_template_part('template-parts/content', 'none'); ?>
-		<?php endif ?>
-
-		<?php echo do_shortcode('[trending type="packs"]'); ?>
-		<?php echo do_shortcode('[trending]'); ?>
-	</section>
+	<?php echo do_shortcode('[trending type="packs"]'); ?>
+	<?php echo do_shortcode('[trending]'); ?>
 </div>
 
 <?php
